@@ -42,6 +42,42 @@ function init(ctx){
 	img.id="voltar";
 	img.src = "../PhotoshopResources/voltarBtn.png";  //dá ordem de carregamento da imagem	
 
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="porto";
+	img.src = "../PhotoshopResources/circuloVermelho.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="coimbra";
+	img.src = "../PhotoshopResources/circuloTransparente.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="lisboa";
+	img.src = "../PhotoshopResources/circuloTransparente.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="faro";
+	img.src = "../PhotoshopResources/circuloTransparente.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="lockCoimbra";
+	img.src = "../PhotoshopResources/lock.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="lockLisboa";
+	img.src = "../PhotoshopResources/lock.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="lockFaro";
+	img.src = "../PhotoshopResources/lock.png";  //dá ordem de carregamento da imagem
+
+
 	function imgLoadedHandler(ev) {
 		if (ev.target.id == 'ranking') {
 			var img = ev.target;
@@ -56,7 +92,56 @@ function init(ctx){
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(2, 7, nw, nh, 1, true, img);
 		}
+
+		else if (ev.target.id == 'porto') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(618, 112, nw, nh, 1, true, img);
+		}
+
+		else if (ev.target.id == 'coimbra') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(634, 210, nw, nh, 1, true, img);
+		}
+
+		else if (ev.target.id == 'lisboa') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(546, 312, nw, nh, 1, true, img);
+		}
+
+		else if (ev.target.id == 'faro') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(650, 475, nw, nh, 1, true, img);
+		}
+
+		else if (ev.target.id == 'lockCoimbra') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(642, 207, nw, nh, 1, true, img);
+		}
+
+		else if (ev.target.id == 'lockLisboa') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(553, 312, nw, nh, 1, true, img);
+		}
 		
+		else if (ev.target.id == 'lockFaro') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(658, 474, nw, nh, 1, true, img);
+		}
+
 		spArray[nLoad] = sp;
 		nLoad++;
 
