@@ -34,38 +34,77 @@ function init(ctx){
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="menu";
-	img.src = "PhotoshopResources/Background.png";  //dá ordem de carregamento da imagem
+	img.id="menuBackground";
+	img.src = "../PhotoshopResources/menuBackground.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="btMenuInicial";
-	img.src = "PhotoshopResources/BotaoMenuInicial.png";  //dá ordem de carregamento da imagem
+	img.id="jogar";
+	img.src = "../PhotoshopResources/jogarBtn.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="AviaoMenuInicial";
-	img.src = "PhotoshopResources/AviaoMenuInicial.png";  //dá ordem de carregamento da imagem		
+	img.id="ranking";
+	img.src = "../PhotoshopResources/rankingBtn.png";  //dá ordem de carregamento da imagem	
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="opcoes";
+	img.src = "../PhotoshopResources/opcoesBtn.png";  //dá ordem de carregamento da imagem	
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="ajuda";
+	img.src = "../PhotoshopResources/ajudaBtn.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="sair";
+	img.src = "../PhotoshopResources/exitBtn.png";  //dá ordem de carregamento da imagem
 
 	function imgLoadedHandler(ev) {
-		if (ev.target.id == 'menu') {
+		if (ev.target.id == 'menuBackground') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
 		}
-		else if(ev.target.id == 'btMenuInicial'){
+
+		else if (ev.target.id == 'jogar') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(252,400, nw,nh, 1, true, img);
+			var sp = new SpriteImage(40,160, nw, nh, 1, true, img);
 		}
-		else if(ev.target.id == 'AviaoMenuInicial'){
+
+		else if (ev.target.id == 'ranking') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0,0, nw,nh, 1, false, img);
+			var sp = new SpriteImage(40,240, nw, nh, 1, true, img);
 		}
+
+		else if (ev.target.id == 'opcoes') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(40,320, nw, nh, 1, true, img);
+		}
+
+		else if (ev.target.id == 'ajuda') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(40,400, nw, nh, 1, true, img);
+		}
+
+		else if (ev.target.id == 'sair') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(600,200, nw, nh, 1, true, img);
+		}
+		
 		spArray[nLoad] = sp;
 		nLoad++;
 
@@ -137,16 +176,29 @@ function render(ctx, spArray, reqID, dt)
 
 function canvasClickHandler(ev, ctx, spArray)
 {
-
-	console.log("Clicking...");
+	//console.log("Clicking...");
 	console.log(spArray[1]);
-	if (spArray[1].clickedBoundingBox(ev,ctx))
-	{
-		console.log("Começa a introdução...");	
-		//window.open("../MultimediaProjecto/html/intro.html", "_self"); para ja salta esta parte pq é preciso fazer a animação.
-		window.open("../MultimediaProjecto/html/menu.html", "_self");
-		//animLoop(ctx, spArray);
+	if (spArray[1].clickedBoundingBox(ev,ctx)) {
+		console.log("Jogar");	
+		window.open("../html/escolhaNivel.html", "_self");
+		
+	}
+	else if (spArray[2].clickedBoundingBox(ev,ctx)) {
+		console.log("Ranking");
+		window.open("../html/ranking.html", "_self");
+	}
+	else if (spArray[3].clickedBoundingBox(ev,ctx)) {
+		console.log("Opcoes");
+		window.open("../html/opcoes.html", "_self");
+
+	}
+	else if (spArray[4].clickedBoundingBox(ev,ctx)) {
+		console.log("Ajuda");
+		window.open("../html/ajuda.html", "_self");
+
+	}
+
+	else if (spArray[5].clickedBoundingBox(ev,ctx)) {
+		console.log("Sair");
 	}
 }
-
-
