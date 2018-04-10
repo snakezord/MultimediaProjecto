@@ -35,7 +35,7 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="ranking";
-	img.src = "../PhotoshopResources/EscolhaNivel.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/escolhaNivelBackground.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
@@ -50,11 +50,11 @@ function init(ctx){
 			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
 		}
 
-		else if (ev.target.id == 'sair') {
+		else if (ev.target.id == 'voltar') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 1, true, img);
+			var sp = new SpriteImage(2, 7, nw, nh, 1, true, img);
 		}
 		
 		spArray[nLoad] = sp;
@@ -132,6 +132,6 @@ function canvasClickHandler(ev, ctx, spArray)
 	console.log(spArray[1]);
 	if (spArray[1].clickedBoundingBox(ev,ctx)) {
 		console.log("voltar");	
-		
+		window.open("../html/menu.html", "_self");
 	}
 }

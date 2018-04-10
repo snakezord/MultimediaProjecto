@@ -200,5 +200,6 @@ function canvasClickHandler(ev, ctx, spArray)
 
 	else if (spArray[5].clickedBoundingBox(ev,ctx)) {
 		console.log("Sair");
+		//window.open("../MultimediaProjecto/main.html", "_self");	
 	}
 }
