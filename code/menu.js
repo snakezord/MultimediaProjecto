@@ -29,7 +29,7 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 1;
+	var totLoad = 6;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();

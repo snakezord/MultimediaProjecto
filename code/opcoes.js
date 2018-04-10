@@ -29,12 +29,12 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 1;
+	var totLoad = 10;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="ranking";
+	img.id="opcoes";
 	img.src = "../PhotoshopResources/opcoesBackground.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
@@ -83,7 +83,7 @@ function init(ctx){
 	img.src = "../PhotoshopResources/muteAll.png";  //dá ordem de carregamento da imagem
 
 	function imgLoadedHandler(ev) {
-		if (ev.target.id == 'ranking') {
+		if (ev.target.id == 'opcoes') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;

@@ -29,12 +29,12 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 1;
+	var totLoad = 9;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="ranking";
+	img.id="escolha";
 	img.src = "../PhotoshopResources/escolhaNivelBackground.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
@@ -79,7 +79,7 @@ function init(ctx){
 
 
 	function imgLoadedHandler(ev) {
-		if (ev.target.id == 'ranking') {
+		if (ev.target.id == 'escolha') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;

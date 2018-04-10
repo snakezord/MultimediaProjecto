@@ -29,12 +29,12 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 1;
+	var totLoad = 2;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="ranking";
+	img.id="ajuda";
 	img.src = "../PhotoshopResources/ajudaBackground.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
@@ -43,7 +43,7 @@ function init(ctx){
 	img.src = "../PhotoshopResources/voltarBtn.png";  //dá ordem de carregamento da imagem	
 
 	function imgLoadedHandler(ev) {
-		if (ev.target.id == 'ranking') {
+		if (ev.target.id == 'ajuda') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
