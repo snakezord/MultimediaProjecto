@@ -29,13 +29,13 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 1;
+	var totLoad = 2;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="ranking";
-	img.src = "../PhotoshopResources/Ajuda.png";  //dá ordem de carregamento da imagem	
+	img.id="ajuda";
+	img.src = "../PhotoshopResources/ajudaBackground.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
@@ -43,18 +43,18 @@ function init(ctx){
 	img.src = "../PhotoshopResources/voltarBtn.png";  //dá ordem de carregamento da imagem	
 
 	function imgLoadedHandler(ev) {
-		if (ev.target.id == 'ranking') {
+		if (ev.target.id == 'ajuda') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
 		}
 
-		else if (ev.target.id == 'sair') {
+		else if (ev.target.id == 'voltar') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 1, true, img);
+			var sp = new SpriteImage(2, 7, nw, nh, 1, true, img);
 		}
 		
 		spArray[nLoad] = sp;
@@ -132,6 +132,6 @@ function canvasClickHandler(ev, ctx, spArray)
 	console.log(spArray[1]);
 	if (spArray[1].clickedBoundingBox(ev,ctx)) {
 		console.log("voltar");	
-		
+		window.open("../html/menu.html", "_self");
 	}
 }

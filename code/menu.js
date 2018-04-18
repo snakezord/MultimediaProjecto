@@ -29,7 +29,7 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 1;
+	var totLoad = 6;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
@@ -200,5 +200,6 @@ function canvasClickHandler(ev, ctx, spArray)
 
 	else if (spArray[5].clickedBoundingBox(ev,ctx)) {
 		console.log("Sair");
+		//window.open("../MultimediaProjecto/main.html", "_self");	
 	}
 }
