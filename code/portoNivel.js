@@ -182,16 +182,48 @@ function render(ctx, spArray, reqID, dt)
 	ctx.clearRect(0, 0, cw, ch);
 
 	//animar sprites
-	//var sp = spArray[0];
+	var arrayDireita = new Array();
+	var arrayEsquerda = new Array();
 
+	arrayDireita.push(spArray[2]);
+	arrayDireita.push(spArray[3]);
+	arrayDireita.push(spArray[5]);
+
+	arrayEsquerda.push(spArray[1]);
+	arrayEsquerda.push(spArray[6]);
+	/*if(spArray[0].checkCollision(spArray[1])){
+ 		spArray[0].speed *= 1.5;
+ 		var audio = new Audio("resources/turbo.mp3");
+		audio.play();
+	}*/
+
+	for (var i=0; i < arrayDireita.length; i++){
+		if (arrayDireita[i].x + arrayDireita[i].width < cw)
+		{
+			if (arrayDireita[i].x + arrayDireita[i].width + arrayDireita[i].speed > cw)
+				arrayDireita[i].x = cw - arrayDireita[i].width;
+			else
+				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
+		}
+	}
+
+	for (var i=0; i < arrayEsquerda.length; i++){
+		if (arrayEsquerda[i].x + arrayEsquerda[i].width < cw)
+		{
+			if (arrayEsquerda[i].x + arrayEsquerda[i].width + arrayEsquerda[i].speed > cw)
+				arrayEsquerda[i].x = cw + arrayEsquerda[i].width;
+			else
+				arrayEsquerda[i].x = arrayEsquerda[i].x - arrayEsquerda[i].speed;
+		}
+	}
 	draw(ctx, spArray);
 }
 
 function canvasClickHandler(ev, ctx, spArray)
 {
 	//console.log("Clicking...");
-	if (spArray[1].clickedBoundingBox(ev,ctx)) {
+	/*if (spArray[1].clickedBoundingBox(ev,ctx)) {
 		console.log("Sair");	
 		window.open("../html/menu.html", "_self");
-	}
+	}*/
 }
