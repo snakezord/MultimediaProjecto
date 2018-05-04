@@ -29,119 +29,95 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 9;
+	var totLoad = 2;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="escolha";
-	img.src = "../PhotoshopResources/escolhaNivelBackground.png";  //dá ordem de carregamento da imagem	
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
-	img.id="voltar";
-	img.src = "../PhotoshopResources/voltarBtn.png";  //dá ordem de carregamento da imagem	
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
 	img.id="porto";
-	img.src = "../PhotoshopResources/circuloVermelho.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/portoNivel.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="coimbra";
-	img.src = "../PhotoshopResources/circuloTransparente.png";  //dá ordem de carregamento da imagem
+	img.id="carroVermelho";
+	img.src = "../PhotoshopResources/carroVermelho.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="lisboa";
-	img.src = "../PhotoshopResources/circuloTransparente.png";  //dá ordem de carregamento da imagem
+	img.id="carroAzul";
+	img.src = "../PhotoshopResources/carroAzul.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="faro";
-	img.src = "../PhotoshopResources/circuloTransparente.png";  //dá ordem de carregamento da imagem
+	img.id="carroAmarelo";
+	img.src = "../PhotoshopResources/carroAmarelo.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="lockCoimbra";
-	img.src = "../PhotoshopResources/lock.png";  //dá ordem de carregamento da imagem
+	img.id="boneco";
+	img.src = "../PhotoshopResources/boneco.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="lockLisboa";
-	img.src = "../PhotoshopResources/lock.png";  //dá ordem de carregamento da imagem
+	img.id="barcoAzul";
+	img.src = "../PhotoshopResources/barcoAzul.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="lockFaro";
-	img.src = "../PhotoshopResources/lock.png";  //dá ordem de carregamento da imagem
+	img.id="barcoCastanho";	
+	img.src = "../PhotoshopResources/barcoCastanho.png";  //dá ordem de carregamento da imagem
 
-
+	// falta acabar o que esta dentro da funcao
 	function imgLoadedHandler(ev) {
-		if (ev.target.id == 'escolha') {
+		if (ev.target.id == 'porto') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
 		}
 
-		else if (ev.target.id == 'voltar') {
+		else if (ev.target.id == 'carroVermelho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(2, 7, nw, nh, 1, true, img);
+			var sp = new SpriteImage(520, 330, nw, nh, 1, true, img);
 		}
 
-		else if (ev.target.id == 'porto') {
+		else if (ev.target.id == 'carroAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(618, 112, nw, nh, 1, true, img);
+			var sp = new SpriteImage(136, 395, nw, nh, 1, true, img);
 		}
 
-		else if (ev.target.id == 'coimbra') {
+		else if (ev.target.id == 'carroAmarelo') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(634, 210, nw, nh, 1, true, img);
+			var sp = new SpriteImage(152, 215, nw, nh, 1, true, img);
 		}
 
-		else if (ev.target.id == 'lisboa') {
+		else if (ev.target.id == 'boneco') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(546, 312, nw, nh, 1, true, img);
+			var sp = new SpriteImage(364, 444, nw, nh, 1, true, img);
 		}
 
-		else if (ev.target.id == 'faro') {
+		else if (ev.target.id == 'barcoAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(650, 475, nw, nh, 1, true, img);
+			var sp = new SpriteImage(100, 65, nw, nh, 1, true, img);
 		}
 
-		else if (ev.target.id == 'lockCoimbra') {
+		else if (ev.target.id == 'barcoCastanho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(642, 207, nw, nh, 1, true, img);
-		}
-
-		else if (ev.target.id == 'lockLisboa') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new SpriteImage(553, 312, nw, nh, 1, true, img);
+			var sp = new SpriteImage(560, 110, nw, nh, 1, true, img);
 		}
 		
-		else if (ev.target.id == 'lockFaro') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new SpriteImage(658, 474, nw, nh, 1, true, img);
-		}
-
 		spArray[nLoad] = sp;
 		nLoad++;
 
@@ -152,11 +128,6 @@ function init(ctx){
 			ctx.canvas.dispatchEvent(ev2);
 		}
 	}	
-}
-
-function overImgHandler(ev) {
-	console.log("over");
-	document.body.style.cursor = "http://wiki-devel.sugarlabs.org/images/e/e2/Arrow.cur";
 }
 
 function startAnim(ctx, spArray)
@@ -220,11 +191,7 @@ function canvasClickHandler(ev, ctx, spArray)
 {
 	//console.log("Clicking...");
 	if (spArray[1].clickedBoundingBox(ev,ctx)) {
-		console.log("voltar");	
+		console.log("Sair");	
 		window.open("../html/menu.html", "_self");
-	}
-	else if (spArray[2].clickedBoundingBox(ev,ctx)) {
-		window.open("../html/portoNivel.html", "_self");
-
 	}
 }

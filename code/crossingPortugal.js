@@ -139,7 +139,6 @@ function canvasClickHandler(ev, ctx, spArray)
 {
 
 	console.log("Clicking...");
-	console.log(spArray[1]);
 	if (spArray[1].clickedBoundingBox(ev,ctx))
 	{
 		console.log("Começa a introdução...");	
