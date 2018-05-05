@@ -30,7 +30,7 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 1;
+	var totLoad = 2;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
@@ -130,7 +130,6 @@ function render(ctx, spArray, reqID, dt)
 function canvasClickHandler(ev, ctx, spArray)
 {
 	//console.log("Clicking...");
-	console.log(spArray[1]);
 	if (spArray[1].clickedBoundingBox(ev,ctx)) {
 		console.log("Sair");
 		window.open("../html/menu.html", "_self");	

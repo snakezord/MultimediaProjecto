@@ -29,23 +29,23 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 3;
+	var totLoad = 2;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="menu";
-	img.src = "PhotoshopResources/Background.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/Background.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="btMenuInicial";
-	img.src = "PhotoshopResources/BotaoMenuInicial.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/BotaoMenuInicial.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="AviaoMenuInicial";
-	img.src = "PhotoshopResources/AviaoMenuInicial.png";  //dá ordem de carregamento da imagem		
+	img.src = "../PhotoshopResources/AviaoMenuInicial.png";  //dá ordem de carregamento da imagem		
 
 	function imgLoadedHandler(ev) {
 		if (ev.target.id == 'menu') {
@@ -139,7 +139,6 @@ function canvasClickHandler(ev, ctx, spArray)
 {
 
 	console.log("Clicking...");
-	console.log(spArray[1]);
 	if (spArray[1].clickedBoundingBox(ev,ctx))
 	{
 		console.log("Começa a introdução...");	

@@ -177,7 +177,7 @@ function render(ctx, spArray, reqID, dt)
 function canvasClickHandler(ev, ctx, spArray)
 {
 	//console.log("Clicking...");
-	console.log(spArray[1]);
+	//console.log(spArray[1]);
 	if (spArray[1].clickedBoundingBox(ev,ctx)) {
 		console.log("Jogar");	
 		window.open("../html/escolhaNivel.html", "_self");
