@@ -5,10 +5,10 @@
 	window.addEventListener("load", main);
 }());
 
+var spArray;
 function main() {
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
-	var spArray;
 	
 	canvas.addEventListener("initend", initEndHandler);
 	init(ctx);
@@ -80,42 +80,42 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(520, 330, nw, nh, 1, true, img);
+			var sp = new SpriteImage(520, 330, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'carroAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(136, 395, nw, nh, 1, true, img);
+			var sp = new SpriteImage(136, 395, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'carroAmarelo') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(152, 215, nw, nh, 1, true, img);
+			var sp = new SpriteImage(152, 215, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'boneco') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(364, 444, nw, nh, 1, true, img);
+			var sp = new SpriteImage(364, 441, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'barcoAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(100, 65, nw, nh, 1, true, img);
+			var sp = new SpriteImage(100, 65, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'barcoCastanho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(560, 110, nw, nh, 1, true, img);
+			var sp = new SpriteImage(560, 110, nw, nh, 1, false, img);
 		}
 		
 		spArray[nLoad] = sp;
@@ -128,6 +128,55 @@ function init(ctx){
 			ctx.canvas.dispatchEvent(ev2);
 		}
 	}	
+}
+
+function keydownHandler(ev) {
+	var cw = canvas.width;
+	var ch = canvas.height;
+	var sp = spArray[4];
+	if(ev.keyCode == 37){
+		console.log(sp.x);
+		console.log(ev.keyCode);
+ 		if (sp.x > 0){
+			if (sp.x - sp.width - sp.speed < 0)
+				sp.x = 0 + sp.width;
+			else
+				sp.x = sp.x - sp.speed - 60;
+		}	
+	}
+
+	if(ev.keyCode == 38){
+		console.log(sp.y);
+		console.log(ev.keyCode);
+ 		if (sp.y > 0){
+			if (sp.y - sp.height - sp.speed < 0)
+				sp.y = 0 + sp.width;
+			else
+				sp.y = sp.y - sp.speed-54;
+		}	
+	}
+
+	if(ev.keyCode == 39){
+		console.log(sp.x);
+		console.log(ev.keyCode);
+ 		if (sp.x + sp.width < cw){
+			if (sp.x + sp.width + sp.speed > cw)
+				sp.x = cw - sp.width;
+			else
+				sp.x = sp.x + sp.speed + 60;
+		}	
+	}
+
+	if(ev.keyCode == 40){
+		console.log(sp.y);
+		console.log(ev.keyCode);
+ 		if (sp.y + sp.height < ch){
+			if (sp.y + sp.height + sp.speed > ch)
+				sp.y = ch - sp.height;
+			else
+				sp.y = sp.y + sp.speed + 60;
+		}	
+	}
 }
 
 function startAnim(ctx, spArray)
@@ -164,6 +213,7 @@ function animLoop(ctx, spArray)
 {
 	var al = function(time)
 	{
+		window.addEventListener("keydown", keydownHandler);
 		animLoop(ctx, spArray);
 	}
 	var reqID = window.requestAnimationFrame(al);
