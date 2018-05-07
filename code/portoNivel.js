@@ -54,11 +54,6 @@ function init(ctx){
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="boneco";
-	img.src = "../PhotoshopResources/boneco.png";  //dá ordem de carregamento da imagem	
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoAzul";
 	img.src = "../PhotoshopResources/barcoAzul.png";  //dá ordem de carregamento da imagem
 
@@ -66,6 +61,11 @@ function init(ctx){
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoCastanho";	
 	img.src = "../PhotoshopResources/barcoCastanho.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="boneco";
+	img.src = "../PhotoshopResources/boneco.png";  //dá ordem de carregamento da imagem	
 
 	// falta acabar o que esta dentro da funcao
 	function imgLoadedHandler(ev) {
@@ -80,28 +80,21 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(520, 330, nw, nh, 1, false, img);
+			var sp = new SpriteImage(520, 335, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'carroAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(136, 395, nw, nh, 1, false, img);
+			var sp = new SpriteImage(136, 400, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'carroAmarelo') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(152, 215, nw, nh, 1, false, img);
-		}
-
-		else if (ev.target.id == 'boneco') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new SpriteImage(364, 441, nw, nh, 1, false, img);
+			var sp = new SpriteImage(152, 230, nw, nh, 1, false, img);
 		}
 
 		else if (ev.target.id == 'barcoAzul') {
@@ -115,9 +108,16 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(560, 110, nw, nh, 1, false, img);
+			var sp = new SpriteImage(560, 115, nw, nh, 1, false, img);
 		}
 		
+		else if (ev.target.id == 'boneco') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(364, 445, nw, nh, 1, false, img);
+		}
+
 		spArray[nLoad] = sp;
 		nLoad++;
 
@@ -133,7 +133,7 @@ function init(ctx){
 function keydownHandler(ev) {
 	var cw = canvas.width;
 	var ch = canvas.height;
-	var sp = spArray[4];
+	var sp = spArray[6];
 	if(ev.keyCode == 37){
 		console.log(sp.x);
 		console.log(ev.keyCode);
@@ -174,7 +174,7 @@ function keydownHandler(ev) {
 			if (sp.y + sp.height + sp.speed > ch)
 				sp.y = ch - sp.height;
 			else
-				sp.y = sp.y + sp.speed + 60;
+				sp.y = sp.y + sp.speed + 54;
 		}	
 	}
 }
@@ -237,10 +237,13 @@ function render(ctx, spArray, reqID, dt)
 
 	arrayDireita.push(spArray[2]);
 	arrayDireita.push(spArray[3]);
-	arrayDireita.push(spArray[5]);
+	arrayDireita.push(spArray[4]);
+
 
 	arrayEsquerda.push(spArray[1]);
-	arrayEsquerda.push(spArray[6]);
+	arrayEsquerda.push(spArray[5]);
+
+	//arrayEsquerda.push(spArray[6]);
 	/*if(spArray[0].checkCollision(spArray[1])){
  		spArray[0].speed *= 1.5;
  		var audio = new Audio("resources/turbo.mp3");
@@ -251,6 +254,12 @@ function render(ctx, spArray, reqID, dt)
 		if (arrayDireita[i].x + arrayDireita[i].width < cw)
 		{
 			if (arrayDireita[i].x + arrayDireita[i].width + arrayDireita[i].speed > cw)
+				arrayDireita[i].x = cw - arrayDireita[i].width;
+			else
+				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
+		}
+		else {
+			if (arrayDireita[i].x + arrayDireita[i].width + arrayDireita[i].speed < cw)
 				arrayDireita[i].x = cw - arrayDireita[i].width;
 			else
 				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
