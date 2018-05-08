@@ -15,15 +15,9 @@ function main() {
 
 	function initEndHandler(ev)
 	{
-		ctx.canvas.addEventListener("click", cch);
 		spArray = ev.spArray;
 		//iniciar a animação
 		startAnim(ctx, spArray);
-	}
-
-	var cch = function(ev)
-	{
-		canvasClickHandler(ev, ctx, spArray);	
 	}
 }
 
@@ -82,7 +76,7 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(520, 335, nw, nh, 1, "left", false, img);
+			var sp = new VeiculoNivel(520, 335, nw, nh, 3, "left", false, img, "../PhotoshopResources/carroVermelhoLeft.png", "../PhotoshopResources/carroVermelhoRight.png");
 			spArray[1] = sp;
 			nLoad++;
 		}
@@ -91,7 +85,7 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(136, 400, nw, nh, 1, "right", false, img);
+			var sp = new VeiculoNivel(136, 400, nw, nh, 3, "right", false, img, "../PhotoshopResources/carroAzulLeft.png", "../PhotoshopResources/carroAzulRight.png");
 			spArray[2] = sp;
 			nLoad++;
 		}
@@ -100,7 +94,7 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(152, 230, nw, nh, 1, "right", false, img);
+			var sp = new VeiculoNivel(152, 230, nw, nh, 3, "right", false, img, "../PhotoshopResources/carroAmareloLeft.png", "../PhotoshopResources/carroAmareloRight.png");
 			spArray[3] = sp;
 			nLoad++;
 		}
@@ -109,7 +103,7 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(100, 65, nw, nh, 1, "right", false, img);
+			var sp = new VeiculoNivel(100, 65, nw, nh, 3, "right", false, img, "../PhotoshopResources/barcoAzulLeft.png", "../PhotoshopResources/barcoAzulRight.png");
 			spArray[4] = sp;
 			nLoad++;
 		}
@@ -118,16 +112,16 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(560, 115, nw, nh, 1, "left", false, img);
+			var sp = new VeiculoNivel(560, 115, nw, nh, 3, "left", false, img, "../PhotoshopResources/barcoCastanhoLeft.png", "../PhotoshopResources/barcoCastanhoRight.png");
 			spArray[5] = sp;
 			nLoad++;
 		}
 		
 		else if (ev.target.id == 'boneco') {
 			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new SpriteImage(364, 445, nw, nh, 5, false, img);
+			var nw = 30;
+			var nh = 30;
+			var sp = new SpriteImage(364, 445, nw, nh, 25, false, img);
 			spArray[6] = sp;
 			nLoad++;
 		}
@@ -251,6 +245,7 @@ function render(ctx, spArray, reqID, dt)
 	}*/
 
 	verificaColisoesLaterais(spArray,ctx);
+	console.log(checkCollision(ctx, spArray[6],spArray[1]));
 	draw(ctx, spArray);
 }
 
@@ -264,6 +259,7 @@ function verificaColisoesLaterais(spArray,ctx){
 			if (spArray[i].x >= 0){
 				if (spArray[i].x - spArray[i].speed < 0){
 					spArray[i].direcao = "right";
+					spArray[i].createImgRight(); 
 				}
 				else
 					spArray[i].x = spArray[i].x - spArray[i].speed;
@@ -271,19 +267,65 @@ function verificaColisoesLaterais(spArray,ctx){
 		}
 		else{
 			if (spArray[i].x + spArray[i].width <= cw){
-				if (spArray[i].x + spArray[i].width + spArray[i].speed > cw)
+				if (spArray[i].x + spArray[i].width + spArray[i].speed > cw){
 					spArray[i].direcao = "left";
+					spArray[i].createImgLeft();
+				}
 				else
 					spArray[i].x = spArray[i].x + spArray[i].speed;
 			}
 		}
 	}
 }
-function canvasClickHandler(ev, ctx, spArray)
-{
-	//console.log("Clicking...");
-	/*if (spArray[1].clickedBoundingBox(ev,ctx)) {
-		console.log("Sair");	
-		window.open("../html/menu.html", "_self");
-	}*/
+
+function checkCollision(ctx, element, element2) {
+    if (checkCollisionBoundingBox(element, element2)) {
+        if (checkCollisionPixelByPixel(ctx, element, element2))
+            return true;
+        else
+        	return false;
+    } 
+    else
+        return false;
+}
+
+function checkCollisionBoundingBox(rect1, rect2) {
+    //   console.log(rect1.width+" "+rect2.width)
+    if (rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.height + rect1.y > rect2.y) {
+        //console.log("colisao na caixa");
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkCollisionPixelByPixel(ctx, element, element2) {
+    let x_left = Math.floor(Math.max(element2.x, element.x));
+    let x_right = Math.floor(Math.min(element2.x + element2.width, element.x + element.width));
+    let y_top = Math.floor(Math.max(element2.y, element.y));
+    let y_bottom = Math.floor(Math.min(element2.y + element2.height, element.y + element.height));
+
+    for (let y = y_top; y < y_bottom; y++) {
+        for (let x = x_left; x < x_right; x++) {
+            let x_0 = Math.round(x - element2.x);
+            let y_0 = Math.round(y - element2.y);
+            let n_pix = y_0 * element2.width + x_0; //n pixel to check
+            let pix_op = elementelement2.imgData.data[4 * n_pix + 3]; //opacity (R G B A)
+
+            let element_x_0 = Math.round(x - element.x);
+            let element_y_0 = Math.round(y - element.y);
+            let element_n_pix = element_y_0 * element.width + element_x_0; //n pixel to check
+            let element_pix_op = element.imgData.data[4 * element_n_pix + 3]; //opacity (R G B A)
+
+            if (pix_op == 255 && element_pix_op == 255) {
+                /*Debug*/
+                // console.log("colisao no pixel");
+                return true;
+            }
+        }
+    }
+    return false;
 }

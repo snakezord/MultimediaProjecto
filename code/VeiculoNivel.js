@@ -25,6 +25,22 @@ class VeiculoNivel
 		this.clickable = clickable;
 	}
 
+	createImgLeft(){
+		var imgNova = new Image();
+		imgNova.id= this.img.id;
+		imgNova.src = this.srcLeft;
+
+		this.img = imgNova; 
+	}
+
+	createImgRight(){
+		var imgNova = new Image();
+		imgNova.id=this.img.id;
+		imgNova.src = this.srcRight;
+
+		this.img = imgNova; 
+	}
+	
 
 	draw(ctx)
 	{
