@@ -29,7 +29,7 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 2;
+	var totLoad = 7;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
@@ -40,27 +40,27 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroVermelho";
-	img.src = "../PhotoshopResources/carroVermelho.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/carroVermelhoLeft.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroAzul";
-	img.src = "../PhotoshopResources/carroAzul.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/carroAzulRight.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroAmarelo";
-	img.src = "../PhotoshopResources/carroAmarelo.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/carroAmareloRight.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoAzul";
-	img.src = "../PhotoshopResources/barcoAzul.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/barcoAzulRight.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoCastanho";	
-	img.src = "../PhotoshopResources/barcoCastanho.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/barcoCastanhoLeft.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
@@ -74,52 +74,63 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
+			spArray[0] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'carroVermelho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(520, 335, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(520, 335, nw, nh, 1, "left", false, img);
+			spArray[1] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'carroAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(136, 400, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(136, 400, nw, nh, 1, "right", false, img);
+			spArray[2] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'carroAmarelo') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(152, 230, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(152, 230, nw, nh, 1, "right", false, img);
+			spArray[3] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'barcoAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(100, 65, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(100, 65, nw, nh, 1, "right", false, img);
+			spArray[4] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'barcoCastanho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(560, 115, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(560, 115, nw, nh, 1, "left", false, img);
+			spArray[5] = sp;
+			nLoad++;
 		}
 		
 		else if (ev.target.id == 'boneco') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(364, 445, nw, nh, 1, false, img);
+			var sp = new SpriteImage(364, 445, nw, nh, 5, false, img);
+			spArray[6] = sp;
+			nLoad++;
 		}
-
-		spArray[nLoad] = sp;
-		nLoad++;
 
 		if (nLoad == totLoad)
 		{
@@ -138,10 +149,10 @@ function keydownHandler(ev) {
 		console.log(sp.x);
 		console.log(ev.keyCode);
  		if (sp.x > 0){
-			if (sp.x - sp.width - sp.speed < 0)
-				sp.x = 0 + sp.width;
+			if (sp.x - sp.speed < 0)
+				sp.x = 0;
 			else
-				sp.x = sp.x - sp.speed - 60;
+				sp.x = sp.x - sp.speed;
 		}	
 	}
 
@@ -149,10 +160,10 @@ function keydownHandler(ev) {
 		console.log(sp.y);
 		console.log(ev.keyCode);
  		if (sp.y > 0){
-			if (sp.y - sp.height - sp.speed < 0)
+			if (sp.y - sp.speed < 0)
 				sp.y = 0 + sp.width;
 			else
-				sp.y = sp.y - sp.speed-54;
+				sp.y = sp.y - sp.speed;
 		}	
 	}
 
@@ -163,7 +174,7 @@ function keydownHandler(ev) {
 			if (sp.x + sp.width + sp.speed > cw)
 				sp.x = cw - sp.width;
 			else
-				sp.x = sp.x + sp.speed + 60;
+				sp.x = sp.x + sp.speed;
 		}	
 	}
 
@@ -171,10 +182,10 @@ function keydownHandler(ev) {
 		console.log(sp.y);
 		console.log(ev.keyCode);
  		if (sp.y + sp.height < ch){
-			if (sp.y + sp.height + sp.speed > ch)
-				sp.y = ch - sp.height;
+			if (sp.y + sp.speed > ch)
+				sp.y = ch;
 			else
-				sp.y = sp.y + sp.speed + 54;
+				sp.y = sp.y + sp.speed;
 		}	
 	}
 }
@@ -231,53 +242,43 @@ function render(ctx, spArray, reqID, dt)
 	//apagar canvas
 	ctx.clearRect(0, 0, cw, ch);
 
-	//animar sprites
-	var arrayDireita = new Array();
-	var arrayEsquerda = new Array();
-
-	arrayDireita.push(spArray[2]);
-	arrayDireita.push(spArray[3]);
-	arrayDireita.push(spArray[4]);
-
-
-	arrayEsquerda.push(spArray[1]);
-	arrayEsquerda.push(spArray[5]);
-
+	/*
 	//arrayEsquerda.push(spArray[6]);
-	/*if(spArray[0].checkCollision(spArray[1])){
+	if(spArray[0].checkCollision(spArray[1])){
  		spArray[0].speed *= 1.5;
  		var audio = new Audio("resources/turbo.mp3");
 		audio.play();
 	}*/
 
-	for (var i=0; i < arrayDireita.length; i++){
-		if (arrayDireita[i].x + arrayDireita[i].width < cw)
-		{
-			if (arrayDireita[i].x + arrayDireita[i].width + arrayDireita[i].speed > cw)
-				arrayDireita[i].x = cw - arrayDireita[i].width;
-			else
-				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
-		}
-		else {
-			if (arrayDireita[i].x + arrayDireita[i].width + arrayDireita[i].speed < cw)
-				arrayDireita[i].x = cw - arrayDireita[i].width;
-			else
-				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
-		}
-	}
-
-	for (var i=0; i < arrayEsquerda.length; i++){
-		if (arrayEsquerda[i].x + arrayEsquerda[i].width < cw)
-		{
-			if (arrayEsquerda[i].x + arrayEsquerda[i].width + arrayEsquerda[i].speed > cw)
-				arrayEsquerda[i].x = cw + arrayEsquerda[i].width;
-			else
-				arrayEsquerda[i].x = arrayEsquerda[i].x - arrayEsquerda[i].speed;
-		}
-	}
+	verificaColisoesLaterais(spArray,ctx);
 	draw(ctx, spArray);
 }
 
+function verificaColisoesLaterais(spArray,ctx){
+
+	var cw = ctx.canvas.width;
+
+	//Verifica Colisão à esquerda
+	for(let i = 1;i <= 5; i++){
+		if(spArray[i].direcao == 'left'){
+			if (spArray[i].x >= 0){
+				if (spArray[i].x - spArray[i].speed < 0){
+					spArray[i].direcao = "right";
+				}
+				else
+					spArray[i].x = spArray[i].x - spArray[i].speed;
+			}
+		}
+		else{
+			if (spArray[i].x + spArray[i].width <= cw){
+				if (spArray[i].x + spArray[i].width + spArray[i].speed > cw)
+					spArray[i].direcao = "left";
+				else
+					spArray[i].x = spArray[i].x + spArray[i].speed;
+			}
+		}
+	}
+}
 function canvasClickHandler(ev, ctx, spArray)
 {
 	//console.log("Clicking...");
