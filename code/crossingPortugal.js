@@ -31,7 +31,6 @@ function init(ctx){
 	var nLoad = 0;
 	var totLoad = 2;
 	var spArray = new Array(totLoad);
-
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="menu";

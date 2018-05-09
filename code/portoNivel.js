@@ -61,7 +61,7 @@ function init(ctx){
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoCastanho";	
 	img.src = "../PhotoshopResources/barcoCastanho.png";  //dá ordem de carregamento da imagem
-
+	
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="boneco";
@@ -133,49 +133,44 @@ function init(ctx){
 function keydownHandler(ev) {
 	var cw = canvas.width;
 	var ch = canvas.height;
-	var sp = spArray[6];
-	if(ev.keyCode == 37){
-		console.log(sp.x);
-		console.log(ev.keyCode);
+	var sp = spArray[1];
+	if(ev.keyCode == 37){ //esquerda
  		if (sp.x > 0){
 			if (sp.x - sp.width - sp.speed < 0)
-				sp.x = 0 + sp.width;
+				sp.x = -65 + sp.width;
 			else
 				sp.x = sp.x - sp.speed - 60;
 		}	
 	}
 
-	if(ev.keyCode == 38){
-		console.log(sp.y);
-		console.log(ev.keyCode);
+	if(ev.keyCode == 38){ //cima
  		if (sp.y > 0){
 			if (sp.y - sp.height - sp.speed < 0)
-				sp.y = 0 + sp.width;
+				sp.y = 0;
 			else
 				sp.y = sp.y - sp.speed-54;
 		}	
 	}
 
-	if(ev.keyCode == 39){
-		console.log(sp.x);
-		console.log(ev.keyCode);
+	if(ev.keyCode == 39){ //direita
  		if (sp.x + sp.width < cw){
 			if (sp.x + sp.width + sp.speed > cw)
-				sp.x = cw - sp.width;
+				sp.x = cw - sp.width - 30;
 			else
 				sp.x = sp.x + sp.speed + 60;
-		}	
+		}
 	}
 
-	if(ev.keyCode == 40){
-		console.log(sp.y);
-		console.log(ev.keyCode);
+	if(ev.keyCode == 40){ //baixo
  		if (sp.y + sp.height < ch){
 			if (sp.y + sp.height + sp.speed > ch)
-				sp.y = ch - sp.height;
+				sp.y = 445;
 			else
 				sp.y = sp.y + sp.speed + 54;
-		}	
+		}
+		else {
+			sp.y = 445;
+		}
 	}
 }
 
@@ -232,7 +227,7 @@ function render(ctx, spArray, reqID, dt)
 	ctx.clearRect(0, 0, cw, ch);
 
 	//animar sprites
-	var arrayDireita = new Array();
+	/*var arrayDireita = new Array();
 	var arrayEsquerda = new Array();
 
 	arrayDireita.push(spArray[2]);
@@ -242,13 +237,6 @@ function render(ctx, spArray, reqID, dt)
 
 	arrayEsquerda.push(spArray[1]);
 	arrayEsquerda.push(spArray[5]);
-
-	//arrayEsquerda.push(spArray[6]);
-	/*if(spArray[0].checkCollision(spArray[1])){
- 		spArray[0].speed *= 1.5;
- 		var audio = new Audio("resources/turbo.mp3");
-		audio.play();
-	}*/
 
 	for (var i=0; i < arrayDireita.length; i++){
 		if (arrayDireita[i].x + arrayDireita[i].width < cw)
@@ -274,7 +262,7 @@ function render(ctx, spArray, reqID, dt)
 			else
 				arrayEsquerda[i].x = arrayEsquerda[i].x - arrayEsquerda[i].speed;
 		}
-	}
+	}*/
 	draw(ctx, spArray);
 }
 
