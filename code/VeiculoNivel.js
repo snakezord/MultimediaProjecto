@@ -1,0 +1,94 @@
+"use strict";
+
+class VeiculoNivel
+{
+
+	constructor(x, y, w, h, speed, direcao, img, srcLeft, srcRight)
+	{
+		//posição e movimento
+		this.xIni = x;
+		this.yIni = y;
+		this.x = x;
+		this.y = y;
+		this.width = w;
+		this.height = h;
+		this.speed = speed;
+		this.direcao = direcao;
+		this.srcLeft = srcLeft;
+		this.srcRight = srcRight;
+
+		//imagem
+		this.img = img;
+
+		this.imageData = this.getImageData(img);
+	}
+
+	createImgLeft(){
+		var imgNova = new Image();
+		imgNova.id= this.img.id;
+		imgNova.src = this.srcLeft;
+
+		this.img = imgNova; 
+	}
+
+	createImgRight(){
+		var imgNova = new Image();
+		imgNova.id=this.img.id;
+		imgNova.src = this.srcRight;
+
+		this.img = imgNova; 
+	}
+
+	getImageData(img){
+
+        var canvasnova = document.createElement("canvas");
+        canvasnova.width = this.width;
+        canvasnova.height = this.height;
+
+        var ctx = canvasnova.getContext("2d");
+        ctx.drawImage(img, 0, 0, this.width, this.height);
+
+        return ctx.getImageData(0, 0, this.width, this.height);
+    }
+	
+
+	draw(ctx)
+	{
+		ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+	}
+
+
+	clear(ctx)
+	{
+		ctx.clearRect(this.x, this.y, this.width, this.height);
+	}
+
+
+	reset(ev, ctx)
+	{
+		this.clear(ctx);
+		this.x = this.xIni;
+		this.y = this.yIni;
+		this.clickable = this.clickableIni;
+	}
+
+	checkCollision(ev){
+		var mx = ev.offsetX;  //mx, my = mouseX, mouseY na canvas
+		var my = ev.offsetY;
+
+		if (mx >= this.x && mx <= this.x + this.width && my >= this.y && my <= this.y + this.height){
+            return true;
+		}
+        else
+            return false;
+	}
+
+
+	clickedBoundingBox(ev, ctx) //ev.target é a canvas
+	{
+		if (!this.clickable)
+			return false;
+		else
+			return this.checkCollision(ev);
+	}
+}

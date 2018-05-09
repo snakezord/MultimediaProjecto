@@ -15,21 +15,15 @@ function main() {
 
 	function initEndHandler(ev)
 	{
-		ctx.canvas.addEventListener("click", cch);
 		spArray = ev.spArray;
 		//iniciar a animação
 		startAnim(ctx, spArray);
-	}
-
-	var cch = function(ev)
-	{
-		canvasClickHandler(ev, ctx, spArray);	
 	}
 }
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 2;
+	var totLoad = 7;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
@@ -40,28 +34,33 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroVermelho";
-	img.src = "../PhotoshopResources/carroVermelho.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/carroVermelhoLeft.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroAzul";
-	img.src = "../PhotoshopResources/carroAzul.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/carroAzulRight.png";  //dá ordem de carregamento da imagem	
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroAmarelo";
-	img.src = "../PhotoshopResources/carroAmarelo.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/carroAmareloRight.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoAzul";
-	img.src = "../PhotoshopResources/barcoAzul.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/barcoAzulRight.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoCastanho";	
+<<<<<<< HEAD
 	img.src = "../PhotoshopResources/barcoCastanho.png";  //dá ordem de carregamento da imagem
 	
+=======
+	img.src = "../PhotoshopResources/barcoCastanhoLeft.png";  //dá ordem de carregamento da imagem
+
+>>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="boneco";
@@ -73,53 +72,64 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
+			var sp = new SpriteImage(0, 0, nw, nh, 1, img);
+			spArray[0] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'carroVermelho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(520, 335, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(520, 335, nw, nh, 3, "left", img, "../PhotoshopResources/carroVermelhoLeft.png", "../PhotoshopResources/carroVermelhoRight.png");
+			spArray[1] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'carroAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(136, 400, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(136, 400, nw, nh, 3, "right", img, "../PhotoshopResources/carroAzulLeft.png", "../PhotoshopResources/carroAzulRight.png");
+			spArray[2] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'carroAmarelo') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(152, 230, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(152, 230, nw, nh, 3, "right", img, "../PhotoshopResources/carroAmareloLeft.png", "../PhotoshopResources/carroAmareloRight.png");
+			spArray[3] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'barcoAzul') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(100, 65, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(100, 65, nw, nh, 3, "right", img, "../PhotoshopResources/barcoAzulLeft.png", "../PhotoshopResources/barcoAzulRight.png");
+			spArray[4] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'barcoCastanho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(560, 115, nw, nh, 1, false, img);
+			var sp = new VeiculoNivel(560, 115, nw, nh, 3, "left", img, "../PhotoshopResources/barcoCastanhoLeft.png", "../PhotoshopResources/barcoCastanhoRight.png");
+			spArray[5] = sp;
+			nLoad++;
 		}
 		
 		else if (ev.target.id == 'boneco') {
 			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new SpriteImage(364, 445, nw, nh, 1, false, img);
+			var nw = 30;
+			var nh = 30;
+			var sp = new SpriteImage(364, 470, nw, nh, 25, img);
+			spArray[6] = sp;
+			nLoad++;
 		}
-
-		spArray[nLoad] = sp;
-		nLoad++;
 
 		if (nLoad == totLoad)
 		{
@@ -136,19 +146,29 @@ function keydownHandler(ev) {
 	var sp = spArray[1];
 	if(ev.keyCode == 37){ //esquerda
  		if (sp.x > 0){
+<<<<<<< HEAD
 			if (sp.x - sp.width - sp.speed < 0)
 				sp.x = -65 + sp.width;
+=======
+			if (sp.x - sp.speed < 0)
+				sp.x = 0;
+>>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 			else
-				sp.x = sp.x - sp.speed - 60;
+				sp.x = sp.x - sp.speed;
 		}	
 	}
 
 	if(ev.keyCode == 38){ //cima
  		if (sp.y > 0){
+<<<<<<< HEAD
 			if (sp.y - sp.height - sp.speed < 0)
 				sp.y = 0;
+=======
+			if (sp.y - sp.speed < 0)
+				sp.y = 0 + sp.width;
+>>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 			else
-				sp.y = sp.y - sp.speed-54;
+				sp.y = sp.y - sp.speed;
 		}	
 	}
 
@@ -157,12 +177,18 @@ function keydownHandler(ev) {
 			if (sp.x + sp.width + sp.speed > cw)
 				sp.x = cw - sp.width - 30;
 			else
+<<<<<<< HEAD
 				sp.x = sp.x + sp.speed + 60;
 		}
+=======
+				sp.x = sp.x + sp.speed;
+		}	
+>>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 	}
 
 	if(ev.keyCode == 40){ //baixo
  		if (sp.y + sp.height < ch){
+<<<<<<< HEAD
 			if (sp.y + sp.height + sp.speed > ch)
 				sp.y = 445;
 			else
@@ -171,6 +197,13 @@ function keydownHandler(ev) {
 		else {
 			sp.y = 445;
 		}
+=======
+			if (sp.y + sp.speed > ch)
+				sp.y = ch;
+			else
+				sp.y = sp.y + sp.speed;
+		}	
+>>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 	}
 }
 
@@ -226,6 +259,7 @@ function render(ctx, spArray, reqID, dt)
 	//apagar canvas
 	ctx.clearRect(0, 0, cw, ch);
 
+<<<<<<< HEAD
 	//animar sprites
 	/*var arrayDireita = new Array();
 	var arrayEsquerda = new Array();
@@ -245,32 +279,118 @@ function render(ctx, spArray, reqID, dt)
 				arrayDireita[i].x = cw - arrayDireita[i].width;
 			else
 				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
-		}
-		else {
-			if (arrayDireita[i].x + arrayDireita[i].width + arrayDireita[i].speed < cw)
-				arrayDireita[i].x = cw - arrayDireita[i].width;
-			else
-				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
-		}
-	}
-
-	for (var i=0; i < arrayEsquerda.length; i++){
-		if (arrayEsquerda[i].x + arrayEsquerda[i].width < cw)
-		{
-			if (arrayEsquerda[i].x + arrayEsquerda[i].width + arrayEsquerda[i].speed > cw)
-				arrayEsquerda[i].x = cw + arrayEsquerda[i].width;
-			else
-				arrayEsquerda[i].x = arrayEsquerda[i].x - arrayEsquerda[i].speed;
-		}
+=======
+	/*
+	//arrayEsquerda.push(spArray[6]);
+	if(spArray[0].checkCollision(spArray[1])){
+ 		spArray[0].speed *= 1.5;
+ 		var audio = new Audio("resources/turbo.mp3");
+		audio.play();
 	}*/
+
+	verificaColisoesLaterais(spArray,ctx);
+	verificaColisoesCarros(spArray,ctx);
 	draw(ctx, spArray);
 }
 
-function canvasClickHandler(ev, ctx, spArray)
-{
-	//console.log("Clicking...");
-	/*if (spArray[1].clickedBoundingBox(ev,ctx)) {
-		console.log("Sair");	
-		window.open("../html/menu.html", "_self");
+function verificaColisoesLaterais(spArray,ctx){
+
+	var cw = ctx.canvas.width;
+
+	//Verifica Colisão à esquerda
+	for(let i = 1;i <= 5; i++){
+		if(spArray[i].direcao == 'left'){
+			if (spArray[i].x >= 0){
+				if (spArray[i].x - spArray[i].speed < 0){
+					spArray[i].direcao = "right";
+					spArray[i].createImgRight(); 
+				}
+				else
+					spArray[i].x = spArray[i].x - spArray[i].speed;
+			}
+>>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
+		}
+		else{
+			if (spArray[i].x + spArray[i].width <= cw){
+				if (spArray[i].x + spArray[i].width + spArray[i].speed > cw){
+					spArray[i].direcao = "left";
+					spArray[i].createImgLeft();
+				}
+				else
+					spArray[i].x = spArray[i].x + spArray[i].speed;
+			}
+		}
+	}
+}
+
+function verificaColisoesCarros(spArray,ctx){
+	for(let i=1;i<=3;i++){
+		if(checkCollision(spArray[6],spArray[i])){
+			spArray[6].reset(ctx);
+		}
+<<<<<<< HEAD
 	}*/
+	draw(ctx, spArray);
+=======
+	}
+
+	for(let i=4;i<=5;i++){
+		if(checkCollision(spArray[6],spArray[i])){
+			spArray[6].x = spArray[i].x + (spArray[i].width/2);
+		}	
+	}
+	
+>>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
+}
+
+function checkCollision(element, element2) {
+    if (checkCollisionBoundingBox(element, element2)) {
+        if (checkCollisionPixelByPixel(element, element2))
+            return true;
+        else
+        	return false;
+    } 
+    else
+        return false;
+}
+
+function checkCollisionBoundingBox(rect1, rect2) {
+    //   console.log(rect1.width+" "+rect2.width)
+    if (rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.height + rect1.y > rect2.y) {
+        //console.log("colisao na caixa");
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkCollisionPixelByPixel(element, element2) {
+    let x_left = Math.floor(Math.max(element2.x, element.x));
+    let x_right = Math.floor(Math.min(element2.x + element2.width, element.x + element.width));
+    let y_top = Math.floor(Math.max(element2.y, element.y));
+    let y_bottom = Math.floor(Math.min(element2.y + element2.height, element.y + element.height));
+
+    for (let y = y_top; y < y_bottom; y++) {
+        for (let x = x_left; x < x_right; x++) {
+            let x_0 = Math.round(x - element2.x);
+            let y_0 = Math.round(y - element2.y);
+            let n_pix = y_0 * element2.width + x_0; //n pixel to check
+            let pix_op = element2.imageData.data[4 * n_pix + 3]; //opacity (R G B A)
+
+            let element_x_0 = Math.round(x - element.x);
+            let element_y_0 = Math.round(y - element.y);
+            let element_n_pix = element_y_0 * element.width + element_x_0; //n pixel to check
+            let element_pix_op = element.imageData.data[4 * element_n_pix + 3]; //opacity (R G B A)
+
+            if (pix_op == 255 && element_pix_op == 255) {
+                /*Debug*/
+                console.log("colisao no pixel");
+                return true;
+            }
+        }
+    }
+    return false;
 }
