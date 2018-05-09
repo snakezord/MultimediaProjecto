@@ -54,13 +54,8 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="barcoCastanho";	
-<<<<<<< HEAD
-	img.src = "../PhotoshopResources/barcoCastanho.png";  //dá ordem de carregamento da imagem
-	
-=======
 	img.src = "../PhotoshopResources/barcoCastanhoLeft.png";  //dá ordem de carregamento da imagem
 
->>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="boneco";
@@ -143,16 +138,11 @@ function init(ctx){
 function keydownHandler(ev) {
 	var cw = canvas.width;
 	var ch = canvas.height;
-	var sp = spArray[1];
+	var sp = spArray[6];
 	if(ev.keyCode == 37){ //esquerda
  		if (sp.x > 0){
-<<<<<<< HEAD
-			if (sp.x - sp.width - sp.speed < 0)
-				sp.x = -65 + sp.width;
-=======
 			if (sp.x - sp.speed < 0)
 				sp.x = 0;
->>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 			else
 				sp.x = sp.x - sp.speed;
 		}	
@@ -160,13 +150,8 @@ function keydownHandler(ev) {
 
 	if(ev.keyCode == 38){ //cima
  		if (sp.y > 0){
-<<<<<<< HEAD
-			if (sp.y - sp.height - sp.speed < 0)
-				sp.y = 0;
-=======
 			if (sp.y - sp.speed < 0)
 				sp.y = 0 + sp.width;
->>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 			else
 				sp.y = sp.y - sp.speed;
 		}	
@@ -175,35 +160,19 @@ function keydownHandler(ev) {
 	if(ev.keyCode == 39){ //direita
  		if (sp.x + sp.width < cw){
 			if (sp.x + sp.width + sp.speed > cw)
-				sp.x = cw - sp.width - 30;
+				sp.x = cw - sp.width;
 			else
-<<<<<<< HEAD
-				sp.x = sp.x + sp.speed + 60;
-		}
-=======
 				sp.x = sp.x + sp.speed;
 		}	
->>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 	}
 
 	if(ev.keyCode == 40){ //baixo
  		if (sp.y + sp.height < ch){
-<<<<<<< HEAD
-			if (sp.y + sp.height + sp.speed > ch)
-				sp.y = 445;
-			else
-				sp.y = sp.y + sp.speed + 54;
-		}
-		else {
-			sp.y = 445;
-		}
-=======
 			if (sp.y + sp.speed > ch)
 				sp.y = ch;
 			else
 				sp.y = sp.y + sp.speed;
 		}	
->>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 	}
 }
 
@@ -259,35 +228,6 @@ function render(ctx, spArray, reqID, dt)
 	//apagar canvas
 	ctx.clearRect(0, 0, cw, ch);
 
-<<<<<<< HEAD
-	//animar sprites
-	/*var arrayDireita = new Array();
-	var arrayEsquerda = new Array();
-
-	arrayDireita.push(spArray[2]);
-	arrayDireita.push(spArray[3]);
-	arrayDireita.push(spArray[4]);
-
-
-	arrayEsquerda.push(spArray[1]);
-	arrayEsquerda.push(spArray[5]);
-
-	for (var i=0; i < arrayDireita.length; i++){
-		if (arrayDireita[i].x + arrayDireita[i].width < cw)
-		{
-			if (arrayDireita[i].x + arrayDireita[i].width + arrayDireita[i].speed > cw)
-				arrayDireita[i].x = cw - arrayDireita[i].width;
-			else
-				arrayDireita[i].x = arrayDireita[i].x + arrayDireita[i].speed;
-=======
-	/*
-	//arrayEsquerda.push(spArray[6]);
-	if(spArray[0].checkCollision(spArray[1])){
- 		spArray[0].speed *= 1.5;
- 		var audio = new Audio("resources/turbo.mp3");
-		audio.play();
-	}*/
-
 	verificaColisoesLaterais(spArray,ctx);
 	verificaColisoesCarros(spArray,ctx);
 	draw(ctx, spArray);
@@ -308,7 +248,6 @@ function verificaColisoesLaterais(spArray,ctx){
 				else
 					spArray[i].x = spArray[i].x - spArray[i].speed;
 			}
->>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 		}
 		else{
 			if (spArray[i].x + spArray[i].width <= cw){
@@ -328,10 +267,6 @@ function verificaColisoesCarros(spArray,ctx){
 		if(checkCollision(spArray[6],spArray[i])){
 			spArray[6].reset(ctx);
 		}
-<<<<<<< HEAD
-	}*/
-	draw(ctx, spArray);
-=======
 	}
 
 	for(let i=4;i<=5;i++){
@@ -339,8 +274,6 @@ function verificaColisoesCarros(spArray,ctx){
 			spArray[6].x = spArray[i].x + (spArray[i].width/2);
 		}	
 	}
-	
->>>>>>> db65ecaaec6f1f55e86a8a8a45f093632158d89b
 }
 
 function checkCollision(element, element2) {
