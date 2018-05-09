@@ -3,7 +3,7 @@
 class VeiculoNivel
 {
 
-	constructor(x, y, w, h, speed, direcao, clickable, img, srcLeft, srcRight)
+	constructor(x, y, w, h, speed, direcao, img, srcLeft, srcRight)
 	{
 		//posição e movimento
 		this.xIni = x;
@@ -20,9 +20,7 @@ class VeiculoNivel
 		//imagem
 		this.img = img;
 
-		//rato
-		this.clickableIni = clickable;
-		this.clickable = clickable;
+		this.imageData = this.getImageData(img);
 	}
 
 	createImgLeft(){
@@ -40,6 +38,18 @@ class VeiculoNivel
 
 		this.img = imgNova; 
 	}
+
+	getImageData(img){
+
+        var canvasnova = document.createElement("canvas");
+        canvasnova.width = this.width;
+        canvasnova.height = this.height;
+
+        var ctx = canvasnova.getContext("2d");
+        ctx.drawImage(img, 0, 0, this.width, this.height);
+
+        return ctx.getImageData(0, 0, this.width, this.height);
+    }
 	
 
 	draw(ctx)

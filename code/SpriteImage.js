@@ -3,7 +3,7 @@
 class SpriteImage
 {
 
-	constructor(x, y, w, h, speed, clickable, img)
+	constructor(x, y, w, h, speed, img)
 	{
 		//posição e movimento
 		this.xIni = x;
@@ -17,10 +17,20 @@ class SpriteImage
 		//imagem
 		this.img = img;
 
-		//rato
-		this.clickableIni = clickable;
-		this.clickable = clickable;
+		this.imageData = this.getImageData(img);
 	}
+
+	getImageData(img){
+
+        var canvasnova = document.createElement("canvas");
+        canvasnova.width = this.width;
+        canvasnova.height = this.height;
+
+        var ctx = canvasnova.getContext("2d");
+        ctx.drawImage(img, 0, 0, this.width, this.height);
+
+        return ctx.getImageData(0, 0, this.width, this.height);
+    }
 
 
 	draw(ctx)
@@ -35,45 +45,10 @@ class SpriteImage
 	}
 
 
-	reset(ev, ctx)
+	reset(ctx)
 	{
 		this.clear(ctx);
 		this.x = this.xIni;
 		this.y = this.yIni;
-		this.clickable = this.clickableIni;
-	}
-	/*
-	mouseOverBoundingBox(ev, ctx) //ev.target é a canvas
-	{
-		var mx = ev.offsetX;  //mx, my = mouseX, mouseY na canvas
-		var my = ev.offsetY;
-		var imgData = ctx.getImageData(mx,my,1,1);
-
-		console.log(imgData.data[0]+" "+imgData.data[1]+" "+imgData.data[2]+" "+imgData.data[3]);
-
-		if ((imgData.data[0] != 255)&&(imgData.data[1] != 255)&&(imgData.data[2] != 255)&&(imgData.data[3] != 255)) {
-			return false;
-		}
-		return true;
-	}*/
-
-	checkCollision(ev){
-		var mx = ev.offsetX;  //mx, my = mouseX, mouseY na canvas
-		var my = ev.offsetY;
-
-		if (mx >= this.x && mx <= this.x + this.width && my >= this.y && my <= this.y + this.height){
-            return true;
-		}
-        else
-            return false;
-	}
-
-
-	clickedBoundingBox(ev, ctx) //ev.target é a canvas
-	{
-		if (!this.clickable)
-			return false;
-		else
-			return this.checkCollision(ev);
 	}
 }
