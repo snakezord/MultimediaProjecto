@@ -9,7 +9,6 @@ var spArray;
 var paused = false;
 var reqID;
 var ctx;
-var estado = false; // estado do nivel (se ja foi passado)
 
 function main() {
 	var canvas = document.getElementById("canvas");

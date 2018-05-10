@@ -6,9 +6,10 @@
 }());
 
 var spArray;
+var ctx;
 function main() {
 	var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext("2d");
+	ctx = canvas.getContext("2d");
 
 	
 	canvas.addEventListener("initend", initEndHandler);
@@ -77,7 +78,6 @@ function init(ctx){
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="lockFaro";
 	img.src = "../PhotoshopResources/lock.png";  //dá ordem de carregamento da imagem
-
 
 	function imgLoadedHandler(ev) {
 		if (ev.target.id == 'escolha') {
@@ -177,6 +177,7 @@ function overImgHandler(ev) {
 
 function startAnim(ctx, spArray)
 {
+	leCookie();
 	draw(ctx, spArray);
 	animLoop(ctx, spArray);
 }
@@ -228,7 +229,6 @@ function render(ctx, spArray, reqID, dt)
 
 	//animar sprites
 	//var sp = spArray[0];
-	leCookie();
 	draw(ctx, spArray);
 }
 
@@ -241,12 +241,13 @@ function canvasClickHandler(ev, ctx, spArray)
 	}
 	else if (spArray[2].clickedBoundingBox(ev,ctx)) {
 		window.open("../html/portoNivel.html", "_self");
-
 	}
 }
 
 function leCookie() {
 	var decodedCookie = decodeURIComponent(document.cookie);
 	console.log(decodedCookie);
-
+	if (decodedCookie == "Porto=complete"){
+		ctx.clearRect(642, 207,642 +200 ,207 -200 );
+	}
 }
