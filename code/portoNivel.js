@@ -85,6 +85,11 @@ function init(ctx){
 	img.id="fim";
 	img.src = "../PhotoshopResources/fim.png";  //dá ordem de carregamento da imagem	
 
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="fim";
+	img.src = "../PhotoshopResources/fim.png";  //dá ordem de carregamento da imagem	
+
 	function imgLoadedHandler(ev) {
 		if (ev.target.id == 'porto') {
 			var img = ev.target;
@@ -118,7 +123,7 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new VeiculoNivel(152, 230, nw, nh, 3, "right", img, "../PhotoshopResources/taxiLeft.png", "../PhotoshopResources/taxiRight.png");
-			spArray[5] = sp;
+			spArray[3] = sp;
 			nLoad++;
 		}
 
