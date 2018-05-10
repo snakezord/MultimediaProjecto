@@ -67,8 +67,8 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
-			spArray[nLoad] = sp;
+			var sp = new SpriteImage(0, 0, nw, nh, 1, img, false);
+			spArray[0] = sp;
 			nLoad++;
 		}
 
@@ -76,8 +76,8 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(40,160, nw, nh, 1, true, img);
-			spArray[nLoad] = sp;
+			var sp = new SpriteImage(40,160, nw, nh, 1, img, true);
+			spArray[1] = sp;
 			nLoad++;
 		}
 
@@ -85,8 +85,8 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(40,240, nw, nh, 1, true, img);
-			spArray[nLoad] = sp;
+			var sp = new SpriteImage(40,240, nw, nh, 1, img, true);
+			spArray[2] = sp;
 			nLoad++;
 		}
 
@@ -94,8 +94,8 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(40,320, nw, nh, 1, true, img);
-			spArray[nLoad] = sp;
+			var sp = new SpriteImage(40,320, nw, nh, 1, img, true);
+			spArray[3] = sp;
 			nLoad++;
 		}
 
@@ -103,8 +103,8 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(40,400, nw, nh, 1, true, img);
-			spArray[nLoad] = sp;
+			var sp = new SpriteImage(40,400, nw, nh, 1, img, true);
+			spArray[4] = sp;
 			nLoad++;
 		}
 
@@ -112,8 +112,8 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(600,200, nw, nh, 1, true, img);
-			spArray[nLoad] = sp;
+			var sp = new SpriteImage(579,430, nw, nh, 1, img, true);
+			spArray[5] = sp;
 			nLoad++;
 		}
 
