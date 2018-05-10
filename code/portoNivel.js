@@ -49,7 +49,7 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroAmarelo";
-	img.src = "../PhotoshopResources/carroAmareloRight.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/taxiRight.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
@@ -123,7 +123,7 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(152, 230, nw, nh, 3, "right", img, "../PhotoshopResources/carroAmareloLeft.png", "../PhotoshopResources/carroAmareloRight.png");
+			var sp = new VeiculoNivel(152, 230, nw, nh, 3, "right", img, "../PhotoshopResources/taxiLeft.png", "../PhotoshopResources/taxiRight.png");
 			spArray[5] = sp;
 			nLoad++;
 		}
@@ -185,7 +185,7 @@ function keydownHandler(ev) {
 	var ch = canvas.height;
 	var sp = spArray[9];
 
-	if(ev.keyCode == 27 || ev.keyCode == 80){ //esquerda
+	if(ev.keyCode == 27 || ev.keyCode == 80){ //pausa (ESC e P)
  		if(paused){
  			paused = false;
  			startAnim(ctx,spArray);
@@ -344,13 +344,7 @@ function verificaColisaoAgua(spArray,ctx){
 function verificaFim(spArray, ctx) {
 	if (spArray[9].verificaColisao(spArray[8])) {
 		document.cookie = "Porto = complete";
-		window.addEventListener("keydown", space);
-
-		function space(e) {
-			var key = e.keyCode;
-			if (key === 32)
-				window.open("escolhaNivel.html","_self");
-		}	
+		window.open("portoNivelPergunta.html","_self");
 	}
 }
 

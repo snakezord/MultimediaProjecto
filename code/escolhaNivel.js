@@ -247,6 +247,6 @@ function canvasClickHandler(ev, ctx, spArray)
 
 function leCookie() {
 	var decodedCookie = decodeURIComponent(document.cookie);
-	console.log(decodedCookie);
+	//console.log(decodedCookie);
 
 }
