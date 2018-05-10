@@ -60,7 +60,7 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="sair";
-	img.src = "../PhotoshopResources/exitBtn.png";  //dá ordem de carregamento da imagem
+	img.src = "../PhotoshopResources/ExitButton.png";  //dá ordem de carregamento da imagem
 
 	function imgLoadedHandler(ev) {
 		if (ev.target.id == 'menuBackground') {
@@ -68,6 +68,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'jogar') {
@@ -75,6 +77,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(40,160, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'ranking') {
@@ -82,6 +86,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(40,240, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'opcoes') {
@@ -89,6 +95,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(40,320, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'ajuda') {
@@ -96,6 +104,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(40,400, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'sair') {
@@ -103,10 +113,9 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(600,200, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
-		
-		spArray[nLoad] = sp;
-		nLoad++;
 
 		if (nLoad == totLoad)
 		{

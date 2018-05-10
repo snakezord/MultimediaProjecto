@@ -29,7 +29,7 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 10;
+	var totLoad = 9;
 	var spArray = new Array(totLoad);
 
 	var img = new Image();
@@ -74,11 +74,6 @@ function init(ctx){
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="mais2";
-	img.src = "../PhotoshopResources/mais.png";  //dá ordem de carregamento da imagem
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
 	img.id="muteAll";
 	img.src = "../PhotoshopResources/muteAll.png";  //dá ordem de carregamento da imagem
 
@@ -87,67 +82,82 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
+			var sp = new SpriteImage(0, 0, nw, nh, 1, img, false);
+			spArray[0] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'voltar') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(2, 7, nw, nh, 1, true, img);
+			var sp = new SpriteImage(2, 7, nw, nh, 1, img, true);
+			spArray[1] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'musica') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(600, 225, nw, nh, 1, true, img);
+			var sp = new SpriteImage(600, 225, nw, nh, 1, img, true);
+			spArray[2] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'menos') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(560, 242, nw, nh, 1, true, img);
+			var sp = new SpriteImage(560, 242, nw, nh, 1, img, true);
+			spArray[3] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'mais') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(670, 242, nw, nh, 1, true, img);
+			var sp = new SpriteImage(670, 242, nw, nh, 1, img, true);
+			spArray[4] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'mute') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(596, 290, nw, nh, 1, true, img);
+			var sp = new SpriteImage(596, 290, nw, nh, 1, img, true);
+			spArray[5] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'menos2') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(560, 310, nw, nh, 1, true, img);
+			var sp = new SpriteImage(560, 310, nw, nh, 1, img, true);
+			spArray[6] = sp;
+			nLoad++; 
 		}
 
 		else if (ev.target.id == 'mais2') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(670, 310, nw, nh, 1, true, img);
+			var sp = new SpriteImage(670, 310, nw, nh, 1, img, true);
+			spArray[7] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'muteAll') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(593, 385, nw, nh, 1, true, img);
+			var sp = new SpriteImage(593, 385, nw, nh, 1, img, true);
+			spArray[8] = sp;
+			nLoad++;
 		}
-		
-		spArray[nLoad] = sp;
-		nLoad++;
 
 		if (nLoad == totLoad)
 		{

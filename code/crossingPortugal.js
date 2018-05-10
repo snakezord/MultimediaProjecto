@@ -29,7 +29,7 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 2;
+	var totLoad = 3;
 	var spArray = new Array(totLoad);
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
@@ -51,22 +51,26 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
+			var sp = new SpriteImage(0, 0, nw, nh, 1, img, false);
+			spArray[0] = sp;
+			nLoad++;
 		}
 		else if(ev.target.id == 'btMenuInicial'){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(252,400, nw,nh, 1, true, img);
+			var sp = new SpriteImage(252,400, nw,nh, 1, img, true);
+			spArray[1] = sp;
+			nLoad++;
 		}
 		else if(ev.target.id == 'AviaoMenuInicial'){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0,0, nw,nh, 1, false, img);
+			var sp = new SpriteImage(0,0, nw,nh, 1, img, false);
+			spArray[2] = sp;
+			nLoad++;
 		}
-		spArray[nLoad] = sp;
-		nLoad++;
 
 		if (nLoad == totLoad)
 		{
@@ -142,7 +146,7 @@ function canvasClickHandler(ev, ctx, spArray)
 	{
 		console.log("Começa a introdução...");	
 		//window.open("../MultimediaProjecto/html/intro.html", "_self"); para ja salta esta parte pq é preciso fazer a animação.
-		window.open("../MultimediaProjecto/html/menu.html", "_self");
+		window.open("../html/menu.html", "_self");
 		//animLoop(ctx, spArray);
 	}
 }

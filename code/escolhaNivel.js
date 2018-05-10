@@ -84,6 +84,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'voltar') {
@@ -91,6 +93,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(2, 7, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'porto') {
@@ -98,6 +102,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(618, 112, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'coimbra') {
@@ -105,6 +111,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(634, 210, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'lisboa') {
@@ -112,6 +120,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(546, 312, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'faro') {
@@ -119,6 +129,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(650, 475, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'lockCoimbra') {
@@ -126,6 +138,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(642, 207, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 
 		else if (ev.target.id == 'lockLisboa') {
@@ -133,6 +147,8 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(553, 312, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
 		
 		else if (ev.target.id == 'lockFaro') {
@@ -140,10 +156,9 @@ function init(ctx){
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(658, 474, nw, nh, 1, true, img);
+			spArray[nLoad] = sp;
+			nLoad++;
 		}
-
-		spArray[nLoad] = sp;
-		nLoad++;
 
 		if (nLoad == totLoad)
 		{

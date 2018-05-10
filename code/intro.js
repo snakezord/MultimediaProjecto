@@ -42,11 +42,10 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 1, false, img);
+			var sp = new SpriteImage(0, 0, nw, nh, 1, img, false);
+			spArray[0] = sp;
+			nLoad++;
 		}
-		
-		spArray[nLoad] = sp;
-		nLoad++;
 
 		if (nLoad == totLoad)
 		{
