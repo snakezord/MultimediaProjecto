@@ -5,10 +5,11 @@
 	window.addEventListener("load", main);
 }());
 
+var spArray;
 function main() {
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
-	var spArray;
+
 	
 	canvas.addEventListener("initend", initEndHandler);
 	init(ctx);
@@ -227,7 +228,7 @@ function render(ctx, spArray, reqID, dt)
 
 	//animar sprites
 	//var sp = spArray[0];
-
+	leCookie();
 	draw(ctx, spArray);
 }
 
@@ -242,4 +243,10 @@ function canvasClickHandler(ev, ctx, spArray)
 		window.open("../html/portoNivel.html", "_self");
 
 	}
+}
+
+function leCookie() {
+	var decodedCookie = decodeURIComponent(document.cookie);
+	console.log(decodedCookie);
+
 }

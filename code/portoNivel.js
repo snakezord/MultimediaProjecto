@@ -9,6 +9,7 @@ var spArray;
 var paused = false;
 var reqID;
 var ctx;
+var estado = false; // estado do nivel (se ja foi passado)
 
 function main() {
 	var canvas = document.getElementById("canvas");
@@ -91,6 +92,15 @@ function init(ctx){
 			nLoad++;
 		}
 
+		else if (ev.target.id == 'agua') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(0, 55, nw, nh, 25, img, false);
+			spArray[2] = sp;
+			nLoad++;
+		}
+
 		else if (ev.target.id == 'carroVermelho') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
@@ -136,24 +146,6 @@ function init(ctx){
 			nLoad++;
 		}
 		
-		else if (ev.target.id == 'boneco') {
-			var img = ev.target;
-			var nw = 30;
-			var nh = 30;
-			var sp = new SpriteImage(364, 470, nw, nh, 25, img, false);
-			spArray[8] = sp;
-			nLoad++;
-		}
-
-		else if (ev.target.id == 'agua') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 55, nw, nh, 25, img, false);
-			spArray[2] = sp;
-			nLoad++;
-		}
-
 		else if (ev.target.id == 'plataformaFinal') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
@@ -166,6 +158,15 @@ function init(ctx){
 		else if (ev.target.id == 'meta') {
 			var img = ev.target;
 			var sp = new SpriteImage(745, 0, 55, 55, 25, img, false);
+			spArray[8] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'boneco') {
+			var img = ev.target;
+			var nw = 30;
+			var nh = 30;
+			var sp = new SpriteImage(364, 470, nw, nh, 25, img, false);
 			spArray[9] = sp;
 			nLoad++;
 		}
@@ -182,7 +183,7 @@ function init(ctx){
 function keydownHandler(ev) {
 	var cw = canvas.width;
 	var ch = canvas.height;
-	var sp = spArray[8];
+	var sp = spArray[9];
 
 	if(ev.keyCode == 27 || ev.keyCode == 80){ //esquerda
  		if(paused){
@@ -286,6 +287,7 @@ function render(ctx, spArray, reqID)
 	verificaColisoesLaterais(spArray,ctx);
 	verificaColisoesCarros(spArray,ctx);
 	verificaColisaoAgua(spArray,ctx);
+	verificaFim(spArray, ctx);
 	draw(ctx, spArray);
 }
 
@@ -320,21 +322,37 @@ function verificaColisoesLaterais(spArray,ctx){
 
 function verificaColisoesCarros(spArray,ctx){
 	for(let i=3;i<=5;i++){
-		if(spArray[8].verificaColisao(spArray[i])){
-			spArray[8].reset(ctx);
+		if(spArray[9].verificaColisao(spArray[i])){
+			spArray[9].reset(ctx);
 		}
 	}
 
 	for(let i=6;i<=7;i++){
-		if(spArray[8].verificaColisao(spArray[i])){
-			spArray[8].x = spArray[i].x + (spArray[i].width/2);
+		if(spArray[9].verificaColisao(spArray[i])){
+			spArray[9].x = spArray[i].x + (spArray[i].width/2);
 		}	
 	}
 }
 
 function verificaColisaoAgua(spArray,ctx){
 
-	if(spArray[8].verificaColisao(spArray[2]) && !spArray[8].verificaColisao(spArray[7]) && !spArray[8].verificaColisao(spArray[6])){
-		spArray[8].reset(ctx);
+	if(spArray[9].verificaColisao(spArray[2]) && !spArray[9].verificaColisao(spArray[7]) && !spArray[9].verificaColisao(spArray[6])){
+		spArray[9].reset(ctx);
 	}	
 }
+
+function verificaFim(spArray, ctx) {
+	if (spArray[9].verificaColisao(spArray[8])) {
+		document.cookie = "Porto = complete";
+		window.addEventListener("keydown", space);
+
+		function space(e) {
+			var key = e.keyCode;
+			if (key === 32)
+				window.open("escolhaNivel.html","_self");
+		}	
+	}
+}
+
+
+
