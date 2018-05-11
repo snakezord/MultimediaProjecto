@@ -229,8 +229,9 @@ function render(ctx, spArray, reqID, dt)
 
 	//animar sprites
 	//var sp = spArray[0];
-	leCookie();
 	draw(ctx, spArray);
+	leCookie(spArray);
+	
 }
 
 function canvasClickHandler(ev, ctx, spArray)
@@ -245,11 +246,14 @@ function canvasClickHandler(ev, ctx, spArray)
 	}
 }
 
-function leCookie() {
-	console.log(spArray[6]);
-	console.log(decodedCookie);
-	if (decodedCookie === "complete"){
+function leCookie(spArray) {
+	//console.log(decodedCookie);
+	if (decodedCookie == "complete"){
 		ctx.beginPath();
 		spArray[6].clear(ctx);
+		for (let i=6; i<spArray.length; i++) {
+			spArray[i] = spArray[i+1];
+		}
+		draw(ctx, spArray);
 	}
 }
