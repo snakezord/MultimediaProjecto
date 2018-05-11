@@ -198,14 +198,14 @@ function canvasClickHandler(ev, ctx, spArray){
 	else if (spArray[3].clickedBoundingBox(ev,ctx)){
 		var img = new Image();
 		img.addEventListener("load", imgLoadedHandler);
-		img.id="portoPergunta";
+		img.id="portoPerguntaCErrado";
 		img.src = "../PhotoshopResources/portoPerguntaCErrado.png";  //dá ordem de carregamento da imagem	
 	}
 
 	else if (spArray[4].clickedBoundingBox(ev,ctx)){
 		var img = new Image();
 		img.addEventListener("load", imgLoadedHandler);
-		img.id="portoPergunta";
+		img.id="portoPerguntaDErrado";
 		img.src = "../PhotoshopResources/portoPerguntaDErrado.png";  //dá ordem de carregamento da imagem	
 	}
 

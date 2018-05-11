@@ -207,7 +207,7 @@ function keydownHandler(ev) {
 	if(ev.keyCode == 38){ //cima
  		if (sp.y > 0){
 			if (sp.y - sp.speed < 0)
-				sp.y = 0 + sp.width;
+				sp.y = 0;
 			else
 				sp.y = sp.y - sp.speed;
 		}	
@@ -266,6 +266,7 @@ function animLoop(ctx, spArray)
 {
 	var al = function(time)
 	{
+		console.log("Tempo: "+time);
 		window.addEventListener("keydown", keydownHandler);
 		animLoop(ctx, spArray);
 	}
