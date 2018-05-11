@@ -178,6 +178,7 @@ function overImgHandler(ev) {
 
 function startAnim(ctx, spArray)
 {
+	leCookie(spArray);
 	draw(ctx, spArray);
 	animLoop(ctx, spArray);
 }
@@ -230,7 +231,7 @@ function render(ctx, spArray, reqID, dt)
 	//animar sprites
 	//var sp = spArray[0];
 	draw(ctx, spArray);
-	leCookie(spArray);
+	
 	
 }
 
@@ -249,11 +250,7 @@ function canvasClickHandler(ev, ctx, spArray)
 function leCookie(spArray) {
 	//console.log(decodedCookie);
 	if (decodedCookie == "complete"){
-		ctx.beginPath();
-		spArray[6].clear(ctx);
-		for (let i=6; i<spArray.length; i++) {
-			spArray[i] = spArray[i+1];
-		}
-		draw(ctx, spArray);
+		spArray.splice(6,1);
+		spArray[3].img.src = "../PhotoshopResources/circuloVermelho.png";
 	}
 }
