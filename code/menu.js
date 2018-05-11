@@ -169,7 +169,7 @@ function animLoop(ctx, spArray)
 }
 
 //resedenho, actualizações, ...
-function render(ctx, spArray, reqID, dt)
+function render(ctx, spArray, reqID)
 {
 	var cw = ctx.canvas.width;
 	var ch = ctx.canvas.height;

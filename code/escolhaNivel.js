@@ -7,10 +7,11 @@
 
 var spArray;
 var ctx;
+var decodedCookie;
 function main() {
 	var canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
-
+	decodedCookie = decodeURIComponent(document.cookie);
 	
 	canvas.addEventListener("initend", initEndHandler);
 	init(ctx);
@@ -177,7 +178,6 @@ function overImgHandler(ev) {
 
 function startAnim(ctx, spArray)
 {
-	leCookie();
 	draw(ctx, spArray);
 	animLoop(ctx, spArray);
 }
@@ -229,6 +229,7 @@ function render(ctx, spArray, reqID, dt)
 
 	//animar sprites
 	//var sp = spArray[0];
+	leCookie();
 	draw(ctx, spArray);
 }
 
@@ -245,9 +246,10 @@ function canvasClickHandler(ev, ctx, spArray)
 }
 
 function leCookie() {
-	var decodedCookie = decodeURIComponent(document.cookie);
+	console.log(spArray[6]);
 	console.log(decodedCookie);
-	if (decodedCookie == "Porto=complete"){
-		ctx.clearRect(642, 207,642 +200 ,207 -200 );
+	if (decodedCookie === "complete"){
+		ctx.beginPath();
+		spArray[6].clear(ctx);
 	}
 }
