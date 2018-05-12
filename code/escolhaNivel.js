@@ -178,7 +178,7 @@ function overImgHandler(ev) {
 
 function startAnim(ctx, spArray)
 {
-	leCookie(spArray);
+	updateLocks(spArray);
 	draw(ctx, spArray);
 	animLoop(ctx, spArray);
 }
@@ -245,10 +245,13 @@ function canvasClickHandler(ev, ctx, spArray)
 	else if (spArray[2].clickedBoundingBox(ev,ctx)) {
 		window.open("../html/portoNivel.html", "_self");
 	}
+	else if (spArray[3].clickedBoundingBox(ev,ctx)) {
+			window.open("../html/coimbraNivel.html", "_self");
+	}
 }
 
-function leCookie(spArray) {
-	//console.log(decodedCookie);
+function updateLocks(spArray) {
+	console.log(decodedCookie);
 	if (decodedCookie == "complete"){
 		spArray.splice(6,1);
 		spArray[3].img.src = "../PhotoshopResources/circuloVermelho.png";

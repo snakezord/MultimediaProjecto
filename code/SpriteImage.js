@@ -127,4 +127,11 @@ class SpriteImage
 		}
 		return true;
 	}
+
+	contido(outro) {
+		if (this.x >= outro.x && this.y >= outro.y && this.x + this.width <= outro.x + outro.width && this.y + this.height <= outro.y + outro.height) {
+			return true;
+		}
+		return false;
+	}
 }

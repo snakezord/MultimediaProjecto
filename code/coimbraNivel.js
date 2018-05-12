@@ -27,76 +27,100 @@ function main() {
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 10;
+	var totLoad = 15;
 	spArray = new Array(totLoad);
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="porto";
-	img.src = "../PhotoshopResources/portoNivel.png";  //dá ordem de carregamento da imagem	
+	img.id="coimbra";
+	img.src = "../PhotoshopResources/coimbraNivel.png";  
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="camiao";
+	img.src = "../PhotoshopResources/camiaoLeft.png";
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="carroVermelho";
-	img.src = "../PhotoshopResources/carroVermelhoLeft.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/carroVermelhoLeft.png";
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="carroAzul";
-	img.src = "../PhotoshopResources/carroAzulRight.png";  //dá ordem de carregamento da imagem	
+	img.id="policia";
+	img.src = "../PhotoshopResources/policiaRight.png";
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
-	img.id="carroAmarelo";
-	img.src = "../PhotoshopResources/taxiRight.png";  //dá ordem de carregamento da imagem
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
-	img.id="barcoAzul";
-	img.src = "../PhotoshopResources/barcoAzulRight.png";  //dá ordem de carregamento da imagem
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
-	img.id="barcoCastanho";	
-	img.src = "../PhotoshopResources/barcoCastanhoLeft.png";  //dá ordem de carregamento da imagem
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
-	img.id="boneco";
-	img.src = "../PhotoshopResources/boneco.png";  //dá ordem de carregamento da imagem
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
-	img.id="agua";
-	img.src = "../PhotoshopResources/agua.png";  //dá ordem de carregamento da imagem
-
-	var img = new Image();
-	img.addEventListener("load", imgLoadedHandler);
-	img.id="plataformaFinal";
-	img.src = "../PhotoshopResources/plataformaFinal.png";  //dá ordem de carregamento da imagem
+	img.id="taxi";
+	img.src = "../PhotoshopResources/taxiRight.png";
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="meta";
-	img.src = "../PhotoshopResources/meta.png";  //dá ordem de carregamento da imagem				
+	img.src = "../PhotoshopResources/fim.png";
 
-	// falta acabar o que esta dentro da funcao
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="agua";
+	img.src = "../PhotoshopResources/agua_grande.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="ponte";
+	img.src = "../PhotoshopResources/ponte.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="boneco";
+	img.src = "../PhotoshopResources/boneco.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="portugalLeft";
+	img.src = "../PhotoshopResources/flagPortugalLeft.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="portugalRight";
+	img.src = "../PhotoshopResources/flagPortugalRight.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="europaLeft";
+	img.src = "../PhotoshopResources/flagEuropaLeft.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="europaRight";
+	img.src = "../PhotoshopResources/flagEuropaRight.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="coimbraLeft";
+	img.src = "../PhotoshopResources/flagCoimbraLeft.png";
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="coimbraRight";
+	img.src = "../PhotoshopResources/flagCoimbraRight.png";
+
 	function imgLoadedHandler(ev) {
-		if (ev.target.id == 'porto') {
+		if (ev.target.id == 'coimbra') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
 			var sp = new SpriteImage(0, 0, nw, nh, 1, img, false);
-			spArray[1] = sp;
+			spArray[0] = sp;
 			nLoad++;
 		}
 
-		else if (ev.target.id == 'agua') {
+		else if (ev.target.id == 'camiao') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 55, nw, nh, 25, img, false);
-			spArray[2] = sp;
+			var sp = new VeiculoNivel(570, 56, nw, nh, 3, "left", img, "../PhotoshopResources/camiaoLeft.png", "../PhotoshopResources/camiaoRight.png");
+			spArray[1] = sp;
 			nLoad++;
 		}
 
@@ -104,62 +128,52 @@ function init(ctx){
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(520, 335, nw, nh, 3, "left", img, "../PhotoshopResources/carroVermelhoLeft.png", "../PhotoshopResources/carroVermelhoRight.png");
+			var sp = new VeiculoNivel(211, 170, nw, nh, 7, "left", img, "../PhotoshopResources/carroVermelhoLeft.png", "../PhotoshopResources/carroVermelhoRight.png");
+			spArray[2] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'policia') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new VeiculoNivel(401, 112, nw, nh, 6, "right", img, "../PhotoshopResources/policiaLeft.png", "../PhotoshopResources/policiaRight.png");
 			spArray[3] = sp;
 			nLoad++;
 		}
 
-		else if (ev.target.id == 'carroAzul') {
+		else if (ev.target.id == 'taxi') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(136, 400, nw, nh, 3, "right", img, "../PhotoshopResources/carroAzulLeft.png", "../PhotoshopResources/carroAzulRight.png");
+			var sp = new VeiculoNivel(72, 230, nw, nh, 4, "right", img, "../PhotoshopResources/taxiLeft.png", "../PhotoshopResources/taxiRight.png");
 			spArray[4] = sp;
 			nLoad++;
 		}
-
-		else if (ev.target.id == 'carroAmarelo') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(152, 230, nw, nh, 3, "right", img, "../PhotoshopResources/taxiLeft.png", "../PhotoshopResources/taxiRight.png");
-			spArray[5] = sp;
-			nLoad++;
-		}
-
-		else if (ev.target.id == 'barcoAzul') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(100, 53, nw, nh+6, 3, "right", img, "../PhotoshopResources/barcoAzulLeft.png", "../PhotoshopResources/barcoAzulRight.png");
-			spArray[6] = sp;
-			nLoad++;
-		}
-
-		else if (ev.target.id == 'barcoCastanho') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new VeiculoNivel(560, 115, nw, nh+6, 3, "left", img, "../PhotoshopResources/barcoCastanhoLeft.png", "../PhotoshopResources/barcoCastanhoRight.png");
-			spArray[7] = sp;
-			nLoad++;
-		}
-		
-		else if (ev.target.id == 'plataformaFinal') {
-			var img = ev.target;
-			var nw = img.naturalWidth;
-			var nh = img.naturalHeight;
-			var sp = new SpriteImage(0, 0, nw, nh, 25, img, false);
-			spArray[0] = sp;
-			nLoad++;
-		}
-
 		else if (ev.target.id == 'meta') {
 			var img = ev.target;
 			var nw = img.naturalWidth;
 			var nh = img.naturalHeight;
-			var sp = new SpriteImage(745, 0, 55, 55, 25, img, false);
-			spArray[8] = sp;
+			var sp = new SpriteImage(745, 0, nw, nh, 25, img, false);
+			spArray[5] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'agua') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(0, 277, nw, nh, 25, img, false);
+			spArray[6] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'ponte') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(70, 277, nw, nh, 25, img, false);
+			spArray[7] = sp;
 			nLoad++;
 		}
 
@@ -168,7 +182,61 @@ function init(ctx){
 			var nw = 30;
 			var nh = 30;
 			var sp = new SpriteImage(364, 470, nw, nh, 25, img, false);
+			spArray[8] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'portugalLeft') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(37, 413, nw, nh, 25, img, false);
 			spArray[9] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'portugalRight') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(176, 413, nw, nh, 25, img, false);
+			spArray[10] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'europaLeft') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(37, 291, nw, nh, 25, img, false);
+			spArray[11] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'europaRight') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(176, 291, nw, nh, 25, img, false);
+			spArray[12] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'coimbraLeft') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(37, 344, nw, nh, 25, img, false);
+			spArray[13] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'coimbraRight') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(174, 344, nw, nh, 25, img, false);
+			spArray[14] = sp;
 			nLoad++;
 		}
 
@@ -178,13 +246,13 @@ function init(ctx){
 			ev2.spArray = spArray;
 			ctx.canvas.dispatchEvent(ev2);
 		}
-	}	
+	}
 }
 
 function keydownHandler(ev) {
 	var cw = canvas.width;
 	var ch = canvas.height;
-	var sp = spArray[9];
+	var sp = spArray[8];
 
 	if(ev.keyCode == 27 || ev.keyCode == 80){ //pausa (ESC e P)
  		if(paused){
@@ -261,14 +329,11 @@ function clear(ctx, spArray)
 	}
 }
 
-//-------------------------------------------------------------
-//--- controlo da animação: coração da aplicação!!!
-//-------------------------------------------------------------
 function animLoop(ctx, spArray)
 {
 	var al = function(time)
 	{
-		console.log("Tempo: "+time);
+		//console.log("Tempo: "+time);
 		window.addEventListener("keydown", keydownHandler);
 		animLoop(ctx, spArray);
 	}
@@ -277,7 +342,6 @@ function animLoop(ctx, spArray)
 	render(ctx, spArray, reqID);
 }
 
-//resedenho, actualizações, ...
 function render(ctx, spArray, reqID)
 {
 	var cw = ctx.canvas.width;
@@ -298,7 +362,7 @@ function verificaColisoesLaterais(spArray,ctx){
 	var cw = ctx.canvas.width;
 
 	//Verifica Colisão à esquerda
-	for(let i = 3;i <= 7; i++){
+	for(let i = 1;i <= 4; i++){
 		if(spArray[i].direcao == 'left'){
 			if (spArray[i].x >= 0){
 				if (spArray[i].x - spArray[i].speed < 0){
@@ -323,29 +387,24 @@ function verificaColisoesLaterais(spArray,ctx){
 }
 
 function verificaColisoesCarros(spArray,ctx){
-	for(let i=3;i<=5;i++){
-		if(spArray[9].verificaColisao(spArray[i])){
-			spArray[9].reset(ctx);
+	for(let i=1;i<=4;i++){
+		if(spArray[8].verificaColisao(spArray[i])){
+			spArray[8].reset(ctx);
 		}
-	}
-
-	for(let i=6;i<=7;i++){
-		if(spArray[9].verificaColisao(spArray[i])){
-			spArray[9].x = spArray[i].x + (spArray[i].width/2);
-		}	
 	}
 }
 
 function verificaColisaoAgua(spArray,ctx){
 
-	if(spArray[9].verificaColisao(spArray[2]) && !spArray[9].verificaColisao(spArray[7]) && !spArray[9].verificaColisao(spArray[6])){
-		spArray[9].reset(ctx);
+	if(spArray[8].verificaColisao(spArray[6]) && !spArray[8].verificaColisao(spArray[7])) {
+		spArray[8].reset(ctx);
 	}	
 }
 
 function verificaFim(spArray, ctx) {
-	if (spArray[9].contido(spArray[8])) {
+	if (spArray[8].contido(spArray[5])) {
 		document.cookie = "complete";
-		window.open("portoNivelPergunta.html","_self");
+		console.log("Fim");
+		//window.open("portoNivelPergunta.html","_self");
 	}
 }
