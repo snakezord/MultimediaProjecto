@@ -404,7 +404,6 @@ function verificaColisaoAgua(spArray,ctx){
 function verificaFim(spArray, ctx) {
 	if (spArray[8].contido(spArray[5])) {
 		document.cookie = "complete";
-		console.log("Fim");
-		//window.open("portoNivelPergunta.html","_self");
+		window.open("coimbraNivelPergunta.html","_self");
 	}
 }
