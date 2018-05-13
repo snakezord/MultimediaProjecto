@@ -144,6 +144,7 @@ function canvasClickHandler(ev, ctx, spArray)
 	console.log("Clicking...");
 	if (spArray[1].clickedBoundingBox(ev,ctx))
 	{
+		var jogadorNome = prompt("Introduz o teu nome de jogar! :)", "");
 		console.log("Começa a introdução...");	
 		//window.open("../MultimediaProjecto/html/intro.html", "_self"); para ja salta esta parte pq é preciso fazer a animação.
 		window.open("../html/menu.html", "_self");
