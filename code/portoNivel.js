@@ -19,15 +19,21 @@ function main() {
 
 	function initEndHandler(ev)
 	{
+		ctx.canvas.addEventListener("click", cch);
 		spArray = ev.spArray;
 		//iniciar a animação
 		startAnim(ctx, spArray);
+	}
+
+	var cch = function(ev)
+	{
+		canvasClickHandler(ev, ctx, spArray);	
 	}
 }
 
 function init(ctx){
 	var nLoad = 0;
-	var totLoad = 10;
+	var totLoad = 12;
 	spArray = new Array(totLoad);
 
 	var img = new Image();
@@ -78,7 +84,17 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="meta";
-	img.src = "../PhotoshopResources/meta.png";  //dá ordem de carregamento da imagem				
+	img.src = "../PhotoshopResources/meta.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="pausa";
+	img.src = "../PhotoshopResources/Pausa.png";  //dá ordem de carregamento da imagem
+
+	var img = new Image();
+	img.addEventListener("load", imgLoadedHandler);
+	img.id="pausaBtMenu";
+	img.src = "../PhotoshopResources/pausaBtMenu.png";  //dá ordem de carregamento da imagem					
 
 	// falta acabar o que esta dentro da funcao
 	function imgLoadedHandler(ev) {
@@ -172,6 +188,24 @@ function init(ctx){
 			nLoad++;
 		}
 
+		else if (ev.target.id == 'pausa') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(250, 150, nw, nh, 25, img, false);
+			spArray[10] = sp;
+			nLoad++;
+		}
+
+		else if (ev.target.id == 'pausaBtMenu') {
+			var img = ev.target;
+			var nw = img.naturalWidth;
+			var nh = img.naturalHeight;
+			var sp = new SpriteImage(327, 279, nw, nh, 25, img, true);
+			spArray[11] = sp;
+			nLoad++;
+		}
+
 		if (nLoad == totLoad)
 		{
 			var ev2 = new Event("initend");
@@ -188,12 +222,19 @@ function keydownHandler(ev) {
 
 	if(ev.keyCode == 27 || ev.keyCode == 80){ //pausa (ESC e P)
  		if(paused){
+ 			clearPausa(ctx, spArray);
+ 			ctx.filter = 'brightness(100%)';
  			paused = false;
- 			startAnim(ctx,spArray);
+			startAnim(ctx,spArray);
  		}
  		else{
+ 			ctx.filter = 'brightness(25%)';
+ 			draw(ctx,spArray);
+ 			ctx.filter = 'brightness(100%)';
+ 			drawPausa(ctx, spArray);
  			paused = true;
- 			window.cancelAnimationFrame(reqID);
+ 			cancelAnimationFrame(reqID);
+ 			//window.removeEventListener("keydown", keydownHandler);
  		}
  	}
 
@@ -243,8 +284,7 @@ function startAnim(ctx, spArray)
 //desenhar sprites
 function draw(ctx, spArray)
 {
-	var dim = spArray.length;
-	for (let i = 0; i < dim; i++)
+	for (let i = 0; i < 10; i++)
 	{
 		spArray[i].draw(ctx);
 	}
@@ -255,7 +295,25 @@ function clear(ctx, spArray)
 {
 	var dim = spArray.length;
 
-	for (let i = 0; i < dim; i++)
+	for (let i = 0; i < 10; i++)
+	{	
+		spArray[i].clear(ctx);
+	}
+}
+
+//desenhar sprites
+function drawPausa(ctx, spArray)
+{
+	for (let i = 10; i < 12; i++)
+	{
+		spArray[i].draw(ctx);
+	}
+}
+
+//apagar sprites
+function clearPausa(ctx, spArray)
+{
+	for (let i = 10; i < 12; i++)
 	{
 		spArray[i].clear(ctx);
 	}
@@ -268,7 +326,7 @@ function animLoop(ctx, spArray)
 {
 	var al = function(time)
 	{
-		console.log("Tempo: "+time);
+		//console.log("Tempo: "+time);
 		window.addEventListener("keydown", keydownHandler);
 		animLoop(ctx, spArray);
 	}
@@ -347,5 +405,13 @@ function verificaFim(spArray, ctx) {
 	if (spArray[9].contido(spArray[8])) {
 		document.cookie = "complete";
 		window.open("portoNivelPergunta.html","_self");
+	}
+}
+
+function canvasClickHandler(ev, ctx, spArray)
+{
+	if (spArray[11].clickedBoundingBox(ev,ctx)) {	
+		window.open("../html/escolhaNivel.html", "_self");
+		
 	}
 }

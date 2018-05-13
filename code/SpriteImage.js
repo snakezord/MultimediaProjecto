@@ -120,7 +120,7 @@ class SpriteImage
 		var mx = ev.offsetX;  //mx, my = mouseX, mouseY na canvas
 		var my = ev.offsetY;
 		var imgData = ctx.getImageData(mx,my,1,1);
-		console.log(imgData);
+		//console.log(imgData);
 
 		if ((imgData.data[3] == 0) || !(mx >= this.x && mx <= this.x + this.width && my >= this.y && my <= this.y + this.height)) {
 			return false;
