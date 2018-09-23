@@ -9,7 +9,7 @@ function main() {
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
 	var spArray;
-	
+	console.log('fodace isto');
 	canvas.addEventListener("initend", initEndHandler);
 	init(ctx);
 
@@ -23,7 +23,7 @@ function main() {
 
 	var cch = function(ev)
 	{
-		canvasClickHandler(ev, ctx, spArray);	
+		canvasClickHandler(ev, ctx, spArray);
 	}
 }
 
@@ -35,12 +35,12 @@ function init(ctx){
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="ajuda";
-	img.src = "../PhotoshopResources/ajudaBackground.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/ajudaBackground.png";  //dá ordem de carregamento da imagem
 
 	var img = new Image();
 	img.addEventListener("load", imgLoadedHandler);
 	img.id="voltar";
-	img.src = "../PhotoshopResources/voltarBtn.png";  //dá ordem de carregamento da imagem	
+	img.src = "../PhotoshopResources/voltarBtn.png";  //dá ordem de carregamento da imagem
 
 	function imgLoadedHandler(ev) {
 		if (ev.target.id == 'ajuda') {
@@ -67,7 +67,7 @@ function init(ctx){
 			ev2.spArray = spArray;
 			ctx.canvas.dispatchEvent(ev2);
 		}
-	}	
+	}
 }
 
 function startAnim(ctx, spArray)
@@ -131,7 +131,7 @@ function canvasClickHandler(ev, ctx, spArray)
 {
 	//console.log("Clicking...");
 	if (spArray[1].clickedBoundingBox(ev,ctx)) {
-		console.log("voltar");	
+		console.log("voltar");
 		window.open("../html/menu.html", "_self");
 	}
 }
