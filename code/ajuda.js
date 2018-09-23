@@ -9,7 +9,10 @@ function main() {
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
 	var spArray;
-	console.log('fodace isto');
+	console.log('fodace isto caralho');
+	for(let i = 0; i<10;i++){
+		console.log(i);
+	}
 	canvas.addEventListener("initend", initEndHandler);
 	init(ctx);
 
